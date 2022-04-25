@@ -42,4 +42,19 @@ router.post('/event/create', isUser(), (req, res, next) => {
     .catch(err => { next(err) })
 });
 
+router.get('/event/all', (req, res, next) => {
+    Event.find()
+        .populate('organizer')
+        .populate('players')
+        .populate('court')
+        .then(allEvents => {
+            console.log(allEvents);
+            res.render('event/all', {events: allEvents})
+        })
+});
+
+router.get('/event/my-events', (req, res, next) => {
+    
+});
+
 module.exports = router;
