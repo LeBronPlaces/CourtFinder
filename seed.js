@@ -21,7 +21,7 @@ const courts = [
                 closing: 24
             },
             surface: 'concrete',
-            rope: 'rope'
+            basketType: 'rope'
         },
         description: 'Nice spot in the heart of Berlin',
         numBaskets: 4
@@ -39,7 +39,7 @@ const courts = [
                 closing: 22
             },
             surface: 'rubber',
-            rope: 'chain'
+            basketType: 'chain'
         },
         description: 'Great court! Most of the time you find other palyers happy for you to join. Beginners welcome.',
         lighting: true,

@@ -31,7 +31,7 @@ const courtSchema = new Schema(
                 'other'
             ]
         },
-        rope: {
+        basketType: {
             type: String,
             enum: [
                 'chain',
