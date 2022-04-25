@@ -51,10 +51,25 @@ router.get('/event/all', (req, res, next) => {
             console.log(allEvents);
             res.render('event/all', {events: allEvents})
         })
+        .catch(err => { next(err) })
 });
 
 router.get('/event/my-events', (req, res, next) => {
-    
+    const id = req.session.user._id
+    User.findById(id)
+        .then(curUser => {
+            Event.find({organizer: curUser._id})
+            .populate('organizer')
+            .populate('players')
+            .populate('court')
+                .then( usersEvents => {
+                    console.log(usersEvents)
+                    res.render('event/my-events', {events: usersEvents})
+                } )
+                .catch(err => { next(err) })
+        })
+        .catch(err => { next(err) })
+
 });
 
 module.exports = router;
