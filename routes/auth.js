@@ -65,4 +65,15 @@ router.post('/login', (req, res, next) => {
         .catch(err => { next(err) })
 });
 
+router.get('/logout', (req, res, next) => {
+	req.session.destroy((err => {
+		if (err) {
+			next(err)
+		} else {
+			// success - we don't have an error
+			res.redirect('/main')
+		}
+	}))
+});
+
 module.exports = router;
