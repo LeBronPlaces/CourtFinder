@@ -21,6 +21,7 @@ router.post('/signup', (req, res, next) => {
         .then( userFromDb => {
             if( userFromDb !== null ) {
                 res.render('auth/signup', {message: 'Username is already taken. Please try another name.'})
+                return
             } else {
                 // create hashed password
                 const salt = bcrypt.genSaltSync()
@@ -34,6 +35,33 @@ router.post('/signup', (req, res, next) => {
                     .then(res.redirect('/main'))
             }
         })
+        .catch(err => { next(err) })
+});
+
+router.get('/login', (req, res, next) => {
+    res.render('auth/login')
+});
+
+router.post('/login', (req, res, next) => {
+    // get data from post request
+    const { username, password } = req.body
+    // try to find the user
+    User.findOne({username: username})
+        .then( userFromDb => {
+            // check if user exists
+            if (userFromDb === null) {
+                res.render('auth/login', { message: 'Invalid User Credentials. Please try again.'})
+                return
+            }
+            // check password
+            if (bcrypt.compareSync(password, userFromDb.password)) {
+                console.log('REQUEST SESSION', req.session)
+                req.session.user = userFromDb
+                res.redirect('/main')
+            } else {
+                res.render('auth/login', { message: 'Invalid User Credentials. Please try again.'})
+            }
+        } )
         .catch(err => { next(err) })
 });
 
