@@ -5,3 +5,5 @@ document.addEventListener(
   },
   false
 );
+
+const bootstrap = require('bootstrap')
