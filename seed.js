@@ -29,8 +29,8 @@ const courts = [
     {
         name: 'Singer Court',
         location: {
-            lat: 52.533880,
-            long:13.383220
+            lat: 47.545390,
+            long:7.605230
         },
         details: {
             accessibility: {
