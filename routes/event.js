@@ -5,6 +5,18 @@ const Court = require('../models/Court')
 const Event = require('../models/Event')
 const User = require('../models/User')
 
+const isUser = () => {
+    return (req, res, next) => {
+      // check for a logged in user
+      if (req.session.user) {
+        // if the user is logged in they can proceed as requested
+        next()
+      } else {
+        res.render('auth/login', {message: 'Please log in in order to create an event.'})
+      }
+    }
+  }
+
 router.get('/event/create', (req, res, next) => {
     Court.find()
         .then(allCourts => {
@@ -14,7 +26,7 @@ router.get('/event/create', (req, res, next) => {
         .catch(err => { next(err) })
 });
 
-router.post('/event/create', (req, res, next) => {
+router.post('/event/create', isUser(), (req, res, next) => {
     const {name, description, date, court} = req.body
     Event.create({
         name,
