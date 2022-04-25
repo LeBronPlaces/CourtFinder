@@ -55,7 +55,6 @@ router.post('/login', (req, res, next) => {
             }
             // check password
             if (bcrypt.compareSync(password, userFromDb.password)) {
-                console.log('REQUEST SESSION', req.session)
                 req.session.user = userFromDb
                 res.redirect('/main')
             } else {
