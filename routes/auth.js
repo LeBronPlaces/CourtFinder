@@ -32,7 +32,13 @@ router.post('/signup', (req, res, next) => {
                     password: hash,
                     role: role
                 })
-                    .then(res.redirect('/main'))
+                    .then(
+                        createdUser => {
+                            req.session.user = createdUser
+                            res.redirect('/main')
+                        }  
+                    )
+                    .catch(err => { next(err) })
             }
         })
         .catch(err => { next(err) })

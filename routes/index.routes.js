@@ -33,11 +33,7 @@ router.get("/", (req, res, next) => {
 
 /* GET main page */
 router.get("/main", (req, res, next) => {
-  // if (req.session.user) {
-  //   res.render('main', {user: req.session.user.role})
-  // } else {
-  //   res.render('main')
-  // }
+  console.log('PRINTING USER: ', req.session.use)
   if (req.session.user) {
     res.render('main', {button: '<form action="/logout" method="GET"><button type="submit">Log Out</button></form>'})
   } else {
