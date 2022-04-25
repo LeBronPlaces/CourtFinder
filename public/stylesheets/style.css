@@ -1,12 +1,99 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: rgb(248, 233, 226);
 }
 
-a {
-  color: #00b7ff;
+.navigation {
+    position: absolute;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-h1 {
-  color: 15px;
+.navigation p {
+    margin: 0 40px;
+    font-family: 'Pacifico', cursive;
+    font-size: 30px;
+}
+
+.index-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('/images/nick-jio-57rD2oDZquc-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.index-container-row-1 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.index-container-row-1 h1 {
+    position: relative;
+    top: 20px;
+    color: rgb(248, 233, 226);
+    font-size: 50px;
+}
+
+.index-container-row-1 p {
+    font-size: 26px;
+}
+
+.index-container-row-2 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-container-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.index-container-buttons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 60px;
+    margin: 0 20px;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.index-signup-button {
+    color: rgb(248, 233, 226);
+    background-color: rgb(223, 86, 23, 0.8);
+}
+
+.index-signup-button:hover {
+    color: rgb(248, 233, 226);
+    background-color: rgb(223, 86, 23, 0.9);
+}
+
+.index-login-button {
+    color: rgb(223, 86, 23);
+    background-color: rgb(248, 233, 226, 0.8);
+}
+
+.index-login-button:hover {
+    color: rgb(223, 86, 23);
+    background-color: rgb(248, 233, 226, 0.9);
+}
+
+.index-container-row-3 {
+    flex: 1;
 }
