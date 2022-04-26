@@ -42,7 +42,20 @@ router.post('/event/create', isUser(), (req, res, next) => {
     .catch(err => { next(err) })
 });
 
+// router.get('/event/all', (req, res, next) => {
+//     Event.find()
+//         .populate('organizer')
+//         .populate('players')
+//         .populate('court')
+//         .then(allEvents => {
+//             console.log(allEvents);
+//             res.render('event/all', {events: allEvents})
+//         })
+//         .catch(err => { next(err) })
+// });
+
 router.get('/event/all', (req, res, next) => {
+    const id = req.session.user._id
     Event.find()
         .populate('organizer')
         .populate('players')
@@ -72,25 +85,6 @@ router.get('/event/my-events', (req, res, next) => {
 
 });
 
-// router.post('/event/join', (req, res, next) => {
-//     const id = req.body.EventId
-//     const userId = req.session.user._id
-//     // console.log('EVENT ID: ', id);
-//     Event.findById(id)
-//         .then(eventFromDb => {
-//             console.log('THIS IS THE INPUT: ', eventFromDb)
-//             const players = eventFromDb.players.push(userId)
-//             const update = {players: players}
-//             Event.findByIdAndUpdate(id, update)
-//                 .then( updatedEvent => {
-//                     //console.log(updatedEvent)
-//                     console.log('hello world');
-//                 })
-//                 .catch(err => { next(err) })
-//         })
-//         .catch(err => { next(err) })
-// });
-
 router.post('/event/join', (req, res, next) => {
     const id = req.body.EventId
     const userId = req.session.user._id
@@ -98,10 +92,15 @@ router.post('/event/join', (req, res, next) => {
         .then(eventFromDb => {
             eventFromDb.players.push(userId)
             eventFromDb.save()
-            res.redirect('/event/all')
+            User.findById(userId)
+                .then( userFromDb => {
+                    userFromDb.playedEvents.push(id)
+                    userFromDb.save()
+                    res.redirect('/event/all')
+                })
+                .catch(err => { next(err) })
         })
         .catch(err => { next(err) })
 });
-
 
 module.exports = router;
