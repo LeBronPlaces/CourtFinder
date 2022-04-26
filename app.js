@@ -49,6 +49,10 @@ app.use("/", index);
 const auth = require("./routes/auth");
 app.use("/", auth);
 
+const map = require("./routes/map");
+app.use("/", map);
+
+
 const event = require("./routes/event");
 app.use("/", event);
 
