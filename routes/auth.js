@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require('bcryptjs');
+const { uploader, cloudinary } = require('../config/cloudinary');
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 const User = require('../models/User')
 
@@ -7,10 +9,14 @@ router.get('/signup', (req, res, next) => {
 	res.render('auth/signup')
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', uploader.single('profile-picture'), (req, res, next) => {
     // get user info from req
     const { username, password } = req.body
     const role = 'user'
+    console.log('REQUEST FILE: ', req.file)
+    // const imgName = req.file.originalname
+    // const imgPath = req.file.path
+    // const publicId = req.file.filename
     // optional: add some password or Username validation
     if (username.length === 0 || password.length === 0) {
         res.render('auth/signup', {message: 'Username and Password cannot be empty'})
@@ -30,7 +36,8 @@ router.post('/signup', (req, res, next) => {
                 User.create({
                     username: username,
                     password: hash,
-                    role: role
+                    role: role,
+                    image: imgPath
                 })
                     .then(
                         createdUser => {
