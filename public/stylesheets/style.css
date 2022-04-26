@@ -43,8 +43,9 @@ body {
 
 .main-container-row-1 h1 {
     position: relative;
-    top: 20px;
-    color: rgb(248, 233, 226);
+    top: 30px;
+    color: rgb(223, 86, 23);
+    font-family: 'Pacifico', cursive;
     font-size: 50px;
 }
 
@@ -162,3 +163,63 @@ button:hover {
     font-size: 16px;
 }
 
+.map-container {
+    width: 100vw;
+    height: 100vh;
+    padding: 60px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('/images/nick-jio-57rD2oDZquc-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.map-container-row-1 {
+    flex: 1;
+}
+
+.map-container-row-2 {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100vw;
+}
+
+.map-container-row-3 {
+    flex: 1;
+}
+
+.map-container-col-1 {
+    flex: 3;
+    height: 500px;
+    margin: 40px 20px 40px 80px;
+    border-radius: 20px;
+}
+
+.map-container-col-2 {
+    flex: 2;
+    margin: 40px 80px 40px 20px;
+    border-radius: 20px;
+    background-color:rgb(223, 86, 23, 0.8);
+}
+
+.map-info {
+    padding: 40px;
+    color: rgb(248, 233, 226);
+}
+
+.map-info h2 {
+    font-size: 22px;
+    margin: 0 0 40px 0;
+}
+
+.map-info img {
+    width: 30px;
+    height: 30px;
+}
+
+.map-info p {
+    margin: 20px 0;
+}
