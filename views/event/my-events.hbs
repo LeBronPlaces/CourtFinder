@@ -1,0 +1,14 @@
+<h1>My Events</h1>
+
+{{#each events}}
+    <h3>{{name}}</h3>
+    <p>{{description}}</p>
+    <p>Court : {{court.name}}</p>
+    <p>Organizer: {{organizer.username}}</p>
+    <div>
+        <h4>players</h4>
+            {{#each players}}
+                <p>{{username}}</p>
+            {{/each}}
+    </div>
+{{/each}}

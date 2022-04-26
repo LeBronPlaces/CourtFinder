@@ -1,0 +1,26 @@
+<h1>Create Event</h1>
+
+<form action="/event/create" method="POST">
+	<label for="name">Event Name: </label>
+	<input type="text" name="name">
+
+	<label for="description">Description: </label>
+	<input type="text" name="description">
+
+	<label for="date">Date: </label>
+	<input type="datetime-local" name="date">
+
+    <label for="court">Court: </label>
+	<select name="court">
+        {{#each allCourts}}
+            <option value="{{this._id}}" selected>{{this.name}}</option>`
+        {{/each}}
+	</select>
+        
+	<button type="submit">Create Event</button>
+	{{!-- {{#if message}}
+		<p>{{message}}</p>
+	{{/if}} --}}
+</form>
+
+{{!-- court --}}
