@@ -31,6 +31,10 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
+router.get("/map", (req, res, next) => {
+  res.render("map");
+});
+
 /* GET main page */
 router.get("/main", (req, res, next) => {
   console.log('PRINTING USER: ', req.session.use)
