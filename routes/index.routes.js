@@ -1,18 +1,5 @@
 const router = require("express").Router();
 
-const isUser = () => {
-  return (req, res, next) => {
-    // check for a logged in user
-    if (req.session.user) {
-      // if the user is logged in they can proceed as requested
-      next()
-    } else {
-      console.log('LOGGED IN USER ROLE: ', req.session.user.role)
-      res.redirect('auth/login')
-    }
-  }
-}
-
 const isAdmin = () => {
   return (req, res, next) => {
     if (req.session.user.role === 'admin') {
@@ -29,6 +16,10 @@ const isAdmin = () => {
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");
+});
+
+router.get("/map", (req, res, next) => {
+  res.render("map");
 });
 
 /* GET main page */
