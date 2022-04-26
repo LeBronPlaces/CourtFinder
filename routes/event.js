@@ -33,26 +33,15 @@ router.post('/event/create', isUser(), (req, res, next) => {
         description,
         date,
         court,
-        organizer: req.session.user._id
+        organizer: req.session.user._id,
+        players: [req.session.user._id]
     })
     .then( createdEvent => {
         console.log('createdEvent :', createdEvent)
-        res.redirect('/main')
+        res.redirect('/event/all')
     })
     .catch(err => { next(err) })
 });
-
-// router.get('/event/all', (req, res, next) => {
-//     Event.find()
-//         .populate('organizer')
-//         .populate('players')
-//         .populate('court')
-//         .then(allEvents => {
-//             console.log(allEvents);
-//             res.render('event/all', {events: allEvents})
-//         })
-//         .catch(err => { next(err) })
-// });
 
 router.get('/event/all', (req, res, next) => {
     const id = req.session.user._id
