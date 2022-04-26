@@ -13,6 +13,12 @@ const eventSchema = new Schema(
             ref: 'User'
         }
     ],
+    invitedPlayers: [
+      {
+          type: Schema.Types.ObjectId,
+          ref: 'User'
+      }
+  ],
     court: {
         type: Schema.Types.ObjectId,
         ref: 'Court'

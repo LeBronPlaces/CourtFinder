@@ -17,17 +17,12 @@
         {{/each}}
 	</select>
 
-	{{!-- <label for="user-invite">Invite Users: </label>
-	<select name="user-invite" multiple>
+	<label for="invited">Invite Users: </label>
+	<select name="invited" multiple>
         {{#each allUsers}}
-            <option value="{{this._id}}" selected>{{this.username}}</option>`
+            <option value="{{this._id}}">{{this.username}}</option>`
         {{/each}}
-	</select> --}}
+	</select>
         
 	<button type="submit">Create Event</button>
-	{{!-- {{#if message}}
-		<p>{{message}}</p>
-	{{/if}} --}}
 </form>
-
-{{!-- court --}}
