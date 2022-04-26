@@ -33,22 +33,38 @@ router.post('/event/create', isUser(), (req, res, next) => {
         description,
         date,
         court,
-        organizer: req.session.user._id
+        organizer: req.session.user._id,
+        players: [req.session.user._id]
     })
     .then( createdEvent => {
         console.log('createdEvent :', createdEvent)
-        res.redirect('/main')
+        res.redirect('/event/all')
     })
     .catch(err => { next(err) })
 });
 
 router.get('/event/all', (req, res, next) => {
+    const id = req.session.user._id
     Event.find()
         .populate('organizer')
         .populate('players')
         .populate('court')
         .then(allEvents => {
-            console.log(allEvents);
+            allEvents.map(event => {
+                const playerIds = []
+                event.players.forEach( player => {
+                    playerIds.push(String(player._id))
+                })
+                console.log(playerIds)
+                console.log(id);
+
+
+                if (playerIds.includes(id)) {
+                    return event.button = ``
+                } else {
+                    return event.button = `<input type="hidden" value="${event._id}" name="EventId"><button type="submit"> Join Event</button>`
+                }
+            })
             res.render('event/all', {events: allEvents})
         })
         .catch(err => { next(err) })
@@ -63,13 +79,31 @@ router.get('/event/my-events', (req, res, next) => {
             .populate('players')
             .populate('court')
                 .then( usersEvents => {
-                    console.log(usersEvents)
+                    // console.log(usersEvents)
                     res.render('event/my-events', {events: usersEvents})
                 } )
                 .catch(err => { next(err) })
         })
         .catch(err => { next(err) })
 
+});
+
+router.post('/event/join', (req, res, next) => {
+    const id = req.body.EventId
+    const userId = req.session.user._id
+    Event.findById(id)
+        .then(eventFromDb => {
+            eventFromDb.players.push(userId)
+            eventFromDb.save()
+            User.findById(userId)
+                .then( userFromDb => {
+                    userFromDb.playedEvents.push(id)
+                    userFromDb.save()
+                    res.redirect('/event/all')
+                })
+                .catch(err => { next(err) })
+        })
+        .catch(err => { next(err) })
 });
 
 module.exports = router;

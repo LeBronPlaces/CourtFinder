@@ -11,4 +11,9 @@
                 <p>{{username}}</p>
             {{/each}}
     </div>
+    <form action="/event/join" method="POST">
+        {{{button}}}
+        {{!-- <input type="hidden" value="{{_id}}" name="EventId">
+        <button type="submit"> Join Event</button> --}}
+    </form>
 {{/each}}
