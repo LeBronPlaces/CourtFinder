@@ -15,9 +15,8 @@ router.post('/signup', uploader.single('profile-picture'), (req, res, next) => {
     const role = 'user'
     console.log('REQUEST FILE: ', req.file)
     // const imgName = req.file.originalname
-    // const imgPath = req.file.path
+    const imgPath = req.file.path
     // const publicId = req.file.filename
-    // optional: add some password or Username validation
     if (username.length === 0 || password.length === 0) {
         res.render('auth/signup', {message: 'Username and Password cannot be empty'})
         return
