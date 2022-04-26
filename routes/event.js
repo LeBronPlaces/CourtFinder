@@ -63,7 +63,7 @@ router.get('/event/my-events', (req, res, next) => {
             .populate('players')
             .populate('court')
                 .then( usersEvents => {
-                    console.log(usersEvents)
+                    // console.log(usersEvents)
                     res.render('event/my-events', {events: usersEvents})
                 } )
                 .catch(err => { next(err) })
@@ -71,5 +71,37 @@ router.get('/event/my-events', (req, res, next) => {
         .catch(err => { next(err) })
 
 });
+
+// router.post('/event/join', (req, res, next) => {
+//     const id = req.body.EventId
+//     const userId = req.session.user._id
+//     // console.log('EVENT ID: ', id);
+//     Event.findById(id)
+//         .then(eventFromDb => {
+//             console.log('THIS IS THE INPUT: ', eventFromDb)
+//             const players = eventFromDb.players.push(userId)
+//             const update = {players: players}
+//             Event.findByIdAndUpdate(id, update)
+//                 .then( updatedEvent => {
+//                     //console.log(updatedEvent)
+//                     console.log('hello world');
+//                 })
+//                 .catch(err => { next(err) })
+//         })
+//         .catch(err => { next(err) })
+// });
+
+router.post('/event/join', (req, res, next) => {
+    const id = req.body.EventId
+    const userId = req.session.user._id
+    Event.findById(id)
+        .then(eventFromDb => {
+            eventFromDb.players.push(userId)
+            eventFromDb.save()
+            res.redirect('/event/all')
+        })
+        .catch(err => { next(err) })
+});
+
 
 module.exports = router;
