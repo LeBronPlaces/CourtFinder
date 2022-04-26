@@ -1,30 +1,36 @@
-<div class="navigation">
+<div class="main-navigation">
     <a href="/">Court Finder</a>
 </div>
-<div class="index-container">
 
-    <div class="index-container-row-1">
+<div class="main-container">
+
+    <div class="main-container-row-1">
     </div>
 
-    <div class="index-container-row-2">
-        <form action="/signup" method="POST">
-			<input type="text" name="username" placeholder="Username">
-			<input type="password" name="password" placeholder="Password">
+    <div class="main-container-row-2">
+		<div class="signup-buttons">
+			<form action="/signup" method="POST">
+				<input type="text" name="username" placeholder="Username">
+				<input type="password" name="password" placeholder="Password">
 
-			{{!-- <label for="role">Role: </label>
-			<select name="role">
-				<option value="user" selected>User</option>
-				<option value="admin">Admin</option>
-			</select> --}}
-        
-			<button type="submit">Sign Up</button>
-			{{#if message}}
+				{{!-- <label for="role">Role: </label>
+				<select name="role">
+					<option value="user" selected>User</option>
+					<option value="admin">Admin</option>
+				</select> --}}
+			
+				<button type="submit">Sign Up</button>
+			</form>
+		</div>
+
+			<div class="error-message">
+		{{#if message}}
 				<p>{{message}}</p>
-			{{/if}}
-		</form>
+		{{/if}}
+			</div>
     </div>
 
-    <div class="index-container-row-3">
+    <div class="main-container-row-3">
     </div>
 
 </div>
