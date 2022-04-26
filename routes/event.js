@@ -61,7 +61,21 @@ router.get('/event/all', (req, res, next) => {
         .populate('players')
         .populate('court')
         .then(allEvents => {
-            console.log(allEvents);
+            allEvents.map(event => {
+                const playerIds = []
+                event.players.forEach( player => {
+                    playerIds.push(String(player._id))
+                })
+                console.log(playerIds)
+                console.log(id);
+
+
+                if (playerIds.includes(id)) {
+                    return event.button = ``
+                } else {
+                    return event.button = `<input type="hidden" value="${event._id}" name="EventId"><button type="submit"> Join Event</button>`
+                }
+            })
             res.render('event/all', {events: allEvents})
         })
         .catch(err => { next(err) })
