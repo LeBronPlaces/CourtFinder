@@ -35,6 +35,13 @@ function createMarkers() {
 }
 
 function addMarker(event) {
+    createMarker(event);
+    showCreateMarkerForm();
+}
+
+function createMarker(event) {
+    actualMarker = event.lngLat;
+    document.getElementById('long').value = actualMarker.lng 
     if (lastMarker !== null) {
         lastMarker.remove();
     }
@@ -52,7 +59,14 @@ function addMarker(event) {
     //console.log("lastMarker: ", lastMarker);
 }
 
+
+function showCreateMarkerForm() {
+    document.getElementById('').innerHTML = '<p></p>'
+
+}
+
 function toggleOpeningTimes() {
+
     let opening = document.getElementById('opening');
     let closing = document.getElementById('closing')
     if (document.getElementById('fulltime').checked) {
