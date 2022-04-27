@@ -18,7 +18,7 @@
         <div class="map-container-col-2">
             <div id="map-info">
                 <div class="create-court-container">
-                    <form class="create-court" action="/courts" method="POST">
+                    <form class="create-court" action="/courts" method="POST" enctype="multipart/form-data">
                         <h3>Create a new court</h3>
                         <span>
                             <label for="name">Court name:</label>
@@ -109,17 +109,23 @@
                         </span>
 
                         <span>
-                            <label for="description">Description:</label>
-                            <textarea name="description" cols="36" rows="2"></textarea>
-                        </span>
-
-                        <span>
                             <label for="numBaskets">Number of baskets:</label>
                             <input id="numBaskets" type="number" name="numBaskets" min="1" max="10" required="true">
 
                             <label class="create-court-col-2" for="lighting">Lighting:</label>
                             <input checked={isLighting} type="checkbox" id="lighting" name="lighting">
                         </span>
+
+                        <span>
+                            <label for="description">Description:</label>
+                            <textarea name="description" cols="36" rows="2"></textarea>
+                        </span>
+
+                        <span>
+                            <label for="court-picture">Court picture:</label>
+	                        <input type="file" name="court-picture" title=" "/> 
+                        </span>
+
 
                         <div class="create-court-button-container">
                             <button type="submit">Add new court</button>
