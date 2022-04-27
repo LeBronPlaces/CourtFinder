@@ -77,44 +77,6 @@ router.get('/event/all', (req, res, next) => {
         .catch(err => { next(err) })
 });
 
-// router.get('/event/my-events', (req, res, next) => {
-//     const id = req.session.user._id
-//     User.findById(id)
-//         .populate(organizedEvents)
-//         .populate(playedEvents)
-//         .populate(invitations)
-//         .then()
-//         .catch(err => { next(err) })
-// });
-
-// router.get('/event/my-events', (req, res, next) => {
-//     const id = req.session.user._id
-//     User.findById(id)
-//         .then(curUser => { 
-//             Event.find({_id: {$in: curUser.organizedEvents}})
-//                 .then( organizedEvents => {
-//                     // played events
-//                     Event.find({_id: {$in: curUser.playedEvents}})
-//                     .then( playedEvents => {
-//                         // invited events
-//                         Event.find({_id: {$in: curUser.invitations}})
-//                             .then( invitedEvents => {
-//                                 console.log({curUser});
-//                                 res.render(res.render('event/my-events', {
-//                                     organizedEvents: organizedEvents,
-//                                     playedEvents: playedEvents,
-//                                     invitedEvents: invitedEvents
-//                                 }))
-//                             })
-//                             .catch(err => { next(err) })
-//                     })
-//                     .catch(err => { next(err) })
-//                 })
-//                 .catch(err => { next(err) })
-//         })
-//         .catch(err => { next(err) })
-// });
-
 router.get('/event/my-events', (req, res, next) => {
     const id = req.session.user._id
     User.findById(id)
@@ -132,25 +94,6 @@ router.get('/event/my-events', (req, res, next) => {
 
 });
 
-// router.get('/event/attended-events', (req, res, next) => {
-//     const id = req.session.user._id
-//     User.findById(id)
-//         .then(curUser => {
-//             Event.find({players: curUser._id})
-//             .populate('organizer')
-//             .populate('players')
-//             .populate('court')
-//                 .then( usersEvents => {
-//                     // console.log(usersEvents)
-//                     console.log(usersEvents)
-//                     res.render('event/attended-events', {events: usersEvents})
-//                 } )
-//                 .catch(err => { next(err) })
-//         })
-//         .catch(err => { next(err) })
-
-// });
-
 router.post('/event/join', (req, res, next) => {
     const id = req.body.EventId
     const userId = req.session.user._id
@@ -163,6 +106,29 @@ router.post('/event/join', (req, res, next) => {
                     userFromDb.playedEvents.push(id)
                     userFromDb.save()
                     res.redirect('/event/all')
+                })
+                .catch(err => { next(err) })
+        })
+        .catch(err => { next(err) })
+});
+
+// router.post('/accept-invte', (req, res, next) => {
+    
+// });
+
+router.post('/reject-invte', (req, res, next) => {
+    const eventId = req.body.eventId
+    const userId = req.session.user._id
+    // console.log('Event ID: ', eventId)
+    User.findById(userId)
+        .then( curUser => {
+            curUser.invitations.splice(curUser.invitations.indexOf(eventId),1)
+            curUser.save()
+            Event.findById(eventId)
+                .then( curEvent => {
+                curEvent.invitedPlayers.splice(curEvent.invitedPlayers.indexOf(userId),1)
+                curEvent.save()
+                res.redirect('event/my-events')
                 })
                 .catch(err => { next(err) })
         })

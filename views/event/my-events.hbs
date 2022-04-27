@@ -48,5 +48,15 @@
                     <p>{{username}}</p>
                 {{/each}}
         </div>
+
+        <form action="/accept-invte" method="POST">
+            <input type="hidden" value="{{_id}}" name="eventId">
+            <button type="submit">ACCEPT INVITE</button>
+        </form>
+        <form action="/reject-invte" method="POST">
+            <input type="hidden" value="{{_id}}" name="eventId">
+            <button type="submit">REJECT INVITE</button>
+        </form>
+
     {{/each}}
 {{/if}}
