@@ -73,6 +73,16 @@
             <div class="one-event">
                 <h3>{{name}}</h3>
                 <p>{{description}}</p>
+                    <div class="invite-answer">
+                        <form action="/accept-invte" method="POST">
+                            <input type="hidden" value="{{_id}}" name="eventId">
+                            <button type="submit">ACCEPT INVITE</button>
+                        </form>
+                        <form action="/reject-invte" method="POST">
+                            <input type="hidden" value="{{_id}}" name="eventId">
+                            <button type="submit">REJECT INVITE</button>
+                        </form>
+                    </div>
                 <div class="court-oranizer">
                     <p><strong>Court:</strong><br>{{court.name}}</p>
                     <p><strong>Organizer:</strong><br>{{organizer.username}}</p>
@@ -89,6 +99,9 @@
                     </div>
                 </div>
             </div>
+
+
+
             {{/each}}
     </div>
     {{/if}}

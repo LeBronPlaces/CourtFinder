@@ -439,3 +439,8 @@ button:hover {
     color: var(--orange);
     font-size: 50px;
 }
+
+.invite-answer {
+    display: flex;
+    justify-content: space-evenly;
+}
