@@ -20,8 +20,11 @@ const isUser = () => {
 router.get('/event/create', (req, res, next) => {
     Court.find()
         .then(allCourts => {
-            let selectTags = ''
-            res.render('event/create', {allCourts: allCourts})
+            User.find()
+                .then(allUsers => {
+                    res.render('event/create', {allCourts: allCourts, allUsers: allUsers})
+                })
+                .catch(err => { next(err) })
         })
         .catch(err => { next(err) })
 });
@@ -37,7 +40,6 @@ router.post('/event/create', isUser(), (req, res, next) => {
         players: [req.session.user._id]
     })
     .then( createdEvent => {
-        console.log('createdEvent :', createdEvent)
         res.redirect('/event/all')
     })
     .catch(err => { next(err) })
@@ -80,7 +82,27 @@ router.get('/event/my-events', (req, res, next) => {
             .populate('court')
                 .then( usersEvents => {
                     // console.log(usersEvents)
+                    console.log(usersEvents)
                     res.render('event/my-events', {events: usersEvents})
+                } )
+                .catch(err => { next(err) })
+        })
+        .catch(err => { next(err) })
+
+});
+
+router.get('/event/attended-events', (req, res, next) => {
+    const id = req.session.user._id
+    User.findById(id)
+        .then(curUser => {
+            Event.find({players: curUser._id})
+            .populate('organizer')
+            .populate('players')
+            .populate('court')
+                .then( usersEvents => {
+                    // console.log(usersEvents)
+                    console.log(usersEvents)
+                    res.render('event/attended-events', {events: usersEvents})
                 } )
                 .catch(err => { next(err) })
         })

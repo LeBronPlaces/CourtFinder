@@ -9,9 +9,11 @@
 
     <div class="main-container-row-2">
 		<div class="signup-buttons">
-			<form action="/signup" method="POST">
+			<form action="/signup" method="POST" enctype="multipart/form-data">
 				<input type="text" name="username" placeholder="Username">
 				<input type="password" name="password" placeholder="Password">
+				<label for="profile-picture">Profile Picture</label>
+				<input type="file" name="profile-picture" />
 				<button type="submit">Sign Up</button>
 			</form>
 		</div>
@@ -27,6 +29,4 @@
     </div>
 
 </div>
-
-
 
