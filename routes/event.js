@@ -30,6 +30,7 @@ router.get('/event/create', (req, res, next) => {
 });
 
 router.post('/event/create', isUser(), (req, res, next) => {
+    const userId = req.session.user._id
     const {name, description, date, court, invited} = req.body
     Event.create({
         name,
@@ -47,9 +48,14 @@ router.post('/event/create', isUser(), (req, res, next) => {
                     invitedPlayer.invitations.push(createdEvent._id)
                     invitedPlayer.save()
                 })
+                User.findById(userId)
+                    .then( organizingUser => {
+                        organizingUser.organizedEvents.push(createdEvent._id)
+                        organizingUser.save()
+                        res.redirect('/event/my-events')
+                    })
             })
             .catch(err => { next(err) })
-        res.redirect('/event/all')
     })
     .catch(err => { next(err) })
 });
