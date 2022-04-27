@@ -247,6 +247,17 @@ button:hover {
     margin: 20px 0;
 }
 
+/* Welcome Court View */
+
+.welcome-court-container h3 {
+    font-family: 'Pacifico', cursive;
+    font-size: 24px;
+}
+
+.welcome-court-container p {
+    font-size: 20px;
+}
+
 /* Create Court View */
 
 .create-court {
@@ -255,10 +266,21 @@ button:hover {
     font-size: 16px;
 }
 
+#create-court-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
+}
+
 .create-court h3 {
-    padding: 0 0 12px 0;
     font-family: 'Pacifico', cursive;
     font-size: 24px;
+}
+
+#create-court-close {
+    font-size: 13px;
+    cursor: pointer;
 }
 
 .create-court span {

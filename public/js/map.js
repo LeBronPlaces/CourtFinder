@@ -1,6 +1,11 @@
 const map = createMap();
 createMarkers();
-map.on('click', addMarker)
+map.on('click', addMarker);
+//showViewInMapInfo(welcomeView);
+// document.getElementById('create-court-close').getElement().addEventListener('click', () => {
+//     showWelcomeView();
+// })
+
 let actualMarker = null;
 let lastMarker = null
 
@@ -23,7 +28,7 @@ function createMarkers() {
         .then(response => {
             let locations = response.data.locations;
             locations.forEach(coord => {
-                new mapboxgl.Marker({
+                let marker = new mapboxgl.Marker({
                     color: 'rgb(255, 123, 0)',
                 }).setLngLat(coord)
                     .addTo(map)
@@ -35,8 +40,8 @@ function createMarkers() {
 }
 
 function addMarker(event) {
+    showViewInMapInfo(welcomeView);
     createMarker(event);
-    showCreateMarkerForm();
 }
 
 function createMarker(event) {
@@ -59,10 +64,8 @@ function createMarker(event) {
     //console.log("lastMarker: ", lastMarker);
 }
 
-
-function showCreateMarkerForm() {
-    document.getElementById('').innerHTML = '<p></p>'
-
+function showViewInMapInfo(form) {
+    document.getElementById('map-info').innerHTML = form;
 }
 
 function toggleOpeningTimes() {
@@ -77,3 +80,11 @@ function toggleOpeningTimes() {
         closing.disabled = false;
     }
 }
+
+
+
+
+
+
+
+
