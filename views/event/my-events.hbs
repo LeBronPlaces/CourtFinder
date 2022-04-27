@@ -7,7 +7,10 @@
     </div>
 </div>
 
+<div class="distance-block"></div>
+
 <div class="events-container">
+<div class="events-cluster">
 
     {{#if organizedEvents}}
     <div class="events-cluster">
@@ -15,15 +18,21 @@
             {{#each organizedEvents}}
             <div class="one-event">
                 <h3>{{name}}</h3>
-                </article>
                 <p>{{description}}</p>
-                <p>Court : {{court.name}}</p>
-                <p>Organizer: {{organizer.username}}</p>
-                <div>
-                    <h4>players</h4>
+                <div class="court-oranizer">
+                    <p><strong>Court:</strong><br>{{court.name}}</p>
+                    <p><strong>Organizer:</strong><br>{{organizer.username}}</p>
+                </div>
+                <div class="court-oranizer">
+                    {{!-- <p><strong>Time:</strong><br>{{date}}</p> --}}
+                    <div>
+                    <p><strong>Players</strong></p>
+                    <ul>
                         {{#each players}}
-                            <p>{{username}}</p>
+                            <li>{{username}}</li>
                         {{/each}}
+                    </ul>
+                    </div>
                 </div>
             </div>
             {{/each}}
@@ -32,74 +41,60 @@
 
     {{#if playedEvents}}
     <div class="events-cluster">
-        <h2>I'm attending.</h2>
-        {{#each playedEvents}}
-        <div class="one-event">
-            <h3>{{name}}</h3>
-            </article>
-            <p>{{description}}</p>
-            <p>Court : {{court.name}}</p>
-            <p>Organizer: {{organizer.username}}</p>
-            <div>
-                <h4>players</h4>
-                    {{#each players}}
-                        <p>{{username}}</p>
-                    {{/each}}
+        <h2>I will join 🏀</h2>
+            {{#each playedEvents}}
+            <div class="one-event">
+                <h3>{{name}}</h3>
+                <p>{{description}}</p>
+                <div class="court-oranizer">
+                    <p><strong>Court:</strong><br>{{court.name}}</p>
+                    <p><strong>Organizer:</strong><br>{{organizer.username}}</p>
+                </div>
+                <div class="court-oranizer">
+                    {{!-- <p><strong>Time:</strong><br>{{date}}</p> --}}
+                    <div>
+                    <p><strong>Players</strong></p>
+                    <ul>
+                        {{#each players}}
+                            <li>{{username}}</li>
+                        {{/each}}
+                    </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-        {{/each}}
+            {{/each}}
     </div>
     {{/if}}
 
     {{#if invitations}}
     <div class="events-cluster">
-        <h2>Someone is waiting for me to accept the invite...</h2>
-        {{#each invitations}}
-        <div class="one-event">
-            <h3>{{name}}</h3>
-            </article>
-            <p>{{description}}</p>
-            <p>Court : {{court.name}}</p>
-            <p>Organizer: {{organizer.username}}</p>
-            <div>
-                <h4>players</h4>
-                    {{#each players}}
-                        <p>{{username}}</p>
-                    {{/each}}
+        <h2>Someone is waiting for my answer 😚</h2>
+            {{#each invitations}}
+            <div class="one-event">
+                <h3>{{name}}</h3>
+                <p>{{description}}</p>
+                <div class="court-oranizer">
+                    <p><strong>Court:</strong><br>{{court.name}}</p>
+                    <p><strong>Organizer:</strong><br>{{organizer.username}}</p>
+                </div>
+                <div class="court-oranizer">
+                    {{!-- <p><strong>Time:</strong><br>{{date}}</p> --}}
+                    <div>
+                    <p><strong>Players</strong></p>
+                    <ul>
+                        {{#each players}}
+                            <li>{{username}}</li>
+                        {{/each}}
+                    </ul>
+                    </div>
+                </div>
             </div>
-
-            <form action="/accept-invte" method="POST">
-                <input type="hidden" value="{{_id}}" name="eventId">
-                <button type="submit">ACCEPT INVITE</button>
-            </form>
-            <form action="/reject-invte" method="POST">
-                <input type="hidden" value="{{_id}}" name="eventId">
-                <button type="submit">REJECT INVITE</button>
-            </form>
-
-        </div>
-        {{/each}}
+            {{/each}}
     </div>
     {{/if}}
 
 </div>
-
-
-
-
-    {{!-- <div class="main-container-row-1">
-        <h1>Find a court and start your game!</h1>
-    </div>
-
-    <div class="main-container-row-2">
-        <div class="index-container-buttons">
-            <a class="index-signup-button" href="/signup">Sign Up</a>
-            <a class="index-login-button" href="/login">Log In</a>
-        </div>
-    </div>
-
-    <div class="main-container-row-3">
-    </div> --}}
+</div>
 
 
 

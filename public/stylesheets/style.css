@@ -325,6 +325,10 @@ button:hover {
     background-color: var(--orange-dark);
 }
 
+.distance-block {
+    height: 60px;
+}
+
 .events-container {
     width: 100vw;
     display: flex;
@@ -338,7 +342,7 @@ button:hover {
 .events-cluster {
     border: 1px solid white;
     width: 90vw;
-    margin: 80px 10px 10px 10px;
+    margin: 10px;
     padding: 10px;
     border-radius: 20px;
     display: flex;
@@ -366,7 +370,43 @@ button:hover {
 .one-event {
     background-color:rgb(223, 86, 23, 0.8);
     width: 26vw;
+    height: 250px;
     margin: 1vw;
     padding: 10px;
     border-radius: 20px;
+    overflow: scroll;
+}
+
+.one-event-all {
+    background-color:rgb(223, 86, 23, 0.8);
+    width: 42vw;
+    height: 250px;
+    margin: 1vw;
+    padding: 10px;
+    border-radius: 20px;
+    overflow: scroll;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.one-event h3 {
+    font-family: 'Pacifico', cursive;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.one-event-all h3 {
+    font-family: 'Pacifico', cursive;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.court-oranizer {
+    display: flex;
+    justify-content: flex-start
+}
+
+.court-oranizer * {
+    margin: 10px;
 }
