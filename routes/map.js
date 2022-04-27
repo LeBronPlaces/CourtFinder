@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const Court = require('../models/Court')
+const { uploader, cloudinary } = require('../config/cloudinary');
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 const isUser = () => {
     return (req, res, next) => {
@@ -8,7 +10,7 @@ const isUser = () => {
         // if the user is logged in they can proceed as requested
         next()
       } else {
-        res.render('auth/login', {message: 'Please log in in order to create an event.'})
+        res.render('auth/login', {message: 'Please log in in order to create a court.'})
       }
     }
   }
@@ -30,11 +32,12 @@ router.get('/courtLocations', (req, res, next) => {
         .catch(err => { next(err) })
 });
 
-router.post('/courts', isUser(), (req, res, next) => {
+router.post('/courts', isUser(), uploader.single('court-picture'), (req, res, next) => {
     console.log(req.body);
-    const {name, long, lat, fulltime, opening, closing, surface, basketType, description, numBaskets, lighting} = req.body
+    const {name, long, lat, fulltime, opening, closing, surface, basketType, description, image, numBaskets, lighting} = req.body
     let lightingChecked = lighting ? true : false
     let fulltimeChecked = fulltime ? true : false
+    const imgPath = req.file.path
     Court.create({
         name: name,
         location: {
@@ -52,11 +55,13 @@ router.post('/courts', isUser(), (req, res, next) => {
             lighting: lightingChecked,
             numBaskets: numBaskets
         },
-        description: description
+        description: description,
+        image: imgPath
         
     })
     .then( createdCourt => {
-       // console.log('createdCourt :', createdCourt)
+       console.log('createdCourt :', createdCourt)
+       res.redirect('/map')
     })
     .catch(err => { next(err) })
 });

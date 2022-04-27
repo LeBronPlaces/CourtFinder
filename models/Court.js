@@ -36,14 +36,14 @@ const courtSchema = new Schema(
             enum: [
                 'chain',
                 'rope',
-                'bullshit'
+                'other'
             ]
         },
         lighting: Boolean,
         numBaskets: Number,
     },
     description: String,
-    image: String,
+    image: String
   },
   {
     timestamps: true,

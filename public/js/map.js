@@ -1,7 +1,8 @@
 const map = createMap();
 createMarkers();
 map.on('click', addMarker)
-let actualMarker = [];
+let actualMarker = null;
+let lastMarker = null
 
 function createMap() {
     mapboxgl.accessToken = 'pk.eyJ1IjoidGhiaCIsImEiOiJjbDJhZGVvbTgwMmQ2M2RucmliNXIwaDZ0In0.RrDkM5Omdqkq1EM_FXPxaQ';
@@ -23,7 +24,7 @@ function createMarkers() {
             let locations = response.data.locations;
             locations.forEach(coord => {
                 new mapboxgl.Marker({
-                    color: 'red',
+                    color: 'rgb(255, 123, 0)',
                 }).setLngLat(coord)
                     .addTo(map)
             })
@@ -34,17 +35,24 @@ function createMarkers() {
 }
 
 function addMarker(event) {
+    if (lastMarker !== null) {
+        lastMarker.remove();
+    }
     actualMarker = event.lngLat;
-    console.log(actualMarker);
-    document.getElementById('long').value = actualMarker.lng 
+    //console.log('actualMarker: ', actualMarker);
+    //console.log('length: ', actualMarker.length);
+    //console.log('mapbox: ', mapboxgl);
+    document.getElementById('long').value = actualMarker.lng
     document.getElementById('lat').value = actualMarker.lat
-    new mapboxgl.Marker({
-        color: 'blue',
+    lastMarker = new mapboxgl.Marker({
+        color: "blue",
+        draggable: true
     }).setLngLat(event.lngLat)
         .addTo(map)
+    //console.log("lastMarker: ", lastMarker);
 }
 
-function toggleOpeningTimes () {
+function toggleOpeningTimes() {
     let opening = document.getElementById('opening');
     let closing = document.getElementById('closing')
     if (document.getElementById('fulltime').checked) {
