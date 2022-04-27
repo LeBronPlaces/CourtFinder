@@ -30,16 +30,25 @@ router.get('/event/create', (req, res, next) => {
 });
 
 router.post('/event/create', isUser(), (req, res, next) => {
-    const {name, description, date, court} = req.body
+    const {name, description, date, court, invited} = req.body
     Event.create({
         name,
         description,
         date,
         court,
         organizer: req.session.user._id,
-        players: [req.session.user._id]
+        players: [req.session.user._id],
+        invitedPlayers: invited
     })
     .then( createdEvent => {
+        User.find({_id: {$in: createdEvent.invitedPlayers}})
+            .then( invitedPlayers => {
+                invitedPlayers.forEach(invitedPlayer => {
+                    invitedPlayer.invitations.push(createdEvent._id)
+                    invitedPlayer.save()
+                })
+            })
+            .catch(err => { next(err) })
         res.redirect('/event/all')
     })
     .catch(err => { next(err) })
@@ -57,10 +66,6 @@ router.get('/event/all', (req, res, next) => {
                 event.players.forEach( player => {
                     playerIds.push(String(player._id))
                 })
-                console.log(playerIds)
-                console.log(id);
-
-
                 if (playerIds.includes(id)) {
                     return event.button = ``
                 } else {
