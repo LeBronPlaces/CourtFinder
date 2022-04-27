@@ -413,7 +413,6 @@ button:hover {
 
 .events-container {
     width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -421,6 +420,10 @@ button:hover {
     background-image: url('/images/nick-jio-57rD2oDZquc-unsplash.jpg');
     background-position: center;
     background-size: cover;
+}
+
+.events-container-form-height {
+    height: 100vh;
 }
 
 .events-form {
