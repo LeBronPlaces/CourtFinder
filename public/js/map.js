@@ -1,5 +1,7 @@
 const map = createMap();
 createMarkers();
+map.on('click', addMarker)
+let actualMarker = [];
 
 function createMap() {
     mapboxgl.accessToken = 'pk.eyJ1IjoidGhiaCIsImEiOiJjbDJhZGVvbTgwMmQ2M2RucmliNXIwaDZ0In0.RrDkM5Omdqkq1EM_FXPxaQ';
@@ -17,16 +19,39 @@ function createMap() {
 
 function createMarkers() {
     axios.get('/courtLocations')
-    .then(response => {
-        let locations = response.data.locations;
-        locations.forEach(coord => {
-            new mapboxgl.Marker({
-                color: 'red',
-            }).setLngLat(coord)
-                .addTo(map)
+        .then(response => {
+            let locations = response.data.locations;
+            locations.forEach(coord => {
+                new mapboxgl.Marker({
+                    color: 'red',
+                }).setLngLat(coord)
+                    .addTo(map)
+            })
         })
-    })
-    .catch(err => {
-        console.log(err)
-    })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+function addMarker(event) {
+    actualMarker = event.lngLat;
+    console.log(actualMarker);
+    document.getElementById('long').value = actualMarker.lng 
+    document.getElementById('lat').value = actualMarker.lat
+    new mapboxgl.Marker({
+        color: 'blue',
+    }).setLngLat(event.lngLat)
+        .addTo(map)
+}
+
+function toggleOpeningTimes () {
+    let opening = document.getElementById('opening');
+    let closing = document.getElementById('closing')
+    if (document.getElementById('fulltime').checked) {
+        opening.disabled = true;
+        closing.disabled = true;
+    } else {
+        opening.disabled = false;
+        closing.disabled = false;
+    }
 }
