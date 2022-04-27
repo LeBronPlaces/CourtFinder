@@ -410,3 +410,29 @@ button:hover {
 .court-oranizer * {
     margin: 10px;
 }
+
+.events-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/images/nick-jio-57rD2oDZquc-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.events-form {
+    width: 40vw;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    align-content: center;
+}
+
+.events-form h1 {
+    font-family: 'Pacifico', cursive;
+    color: var(--orange);
+    font-size: 50px;
+}

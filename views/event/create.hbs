@@ -1,6 +1,19 @@
-<h1>Create Event</h1>
+<div class="main-navigation">
+    <a href="/">Court Finder</a>
+    <div class="event-buttons">
+        <form action="/event/all" method="GET"><button type="submit">Find A Game</button></form>
+        <form action="/event/my-events" method="GET"><button type="submit">See my events</button></form>
+        <form action="/logout" method="GET"><button type="submit">Logout</button></form>
+    </div>
+</div>
 
-<form action="/event/create" method="POST">
+<div class="distance-block"></div>
+
+<div class="events-container">
+<div class="events-form">
+
+<h1>Create Your own Event</h1>
+<form class="create-court" action="/event/create" method="POST">
 	<label for="name">Event Name: </label>
 	<input type="text" name="name">
 
@@ -17,6 +30,7 @@
         {{/each}}
 	</select>
 
+	<div class="event-form-colum"></div>
 	<label for="invited">Invite Users: </label>
 	<select name="invited" multiple>
         {{#each allUsers}}
@@ -26,3 +40,6 @@
         
 	<button type="submit">Create Event</button>
 </form>
+
+</div>
+</div>
