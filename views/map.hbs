@@ -2,7 +2,7 @@
 <div id='map' style='width: 100vw; height: 100vh;'></div>
     <script src="/js/map.js"></script>
 
-<form action="/courts" method="POST">
+<form action="/courts" method="POST" enctype="multipart/form-data">
 	<label for="name">name: </label>
 	<input type="text" name="name">
 
@@ -95,5 +95,8 @@
 
     <label for="lighting">lighting</label>
     <input checked={isLighting} type="checkbox" id="lighting" name="lighting">
+
+    <label for="court-picture">court picture</label>
+	<input type="file" name="court-picture" />
         
 	<button type="submit">Add new court</button>
