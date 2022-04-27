@@ -112,14 +112,29 @@ router.post('/event/join', (req, res, next) => {
         .catch(err => { next(err) })
 });
 
-// router.post('/accept-invte', (req, res, next) => {
-    
-// });
+router.post('/accept-invte', (req, res, next) => {
+    const eventId = req.body.eventId
+    const userId = req.session.user._id
+    User.findById(userId)
+        .then( curUser => {
+            curUser.invitations.splice(curUser.invitations.indexOf(eventId),1)
+            curUser.playedEvents.push(eventId)
+            curUser.save()
+            Event.findById(eventId)
+                .then( curEvent => {
+                curEvent.invitedPlayers.splice(curEvent.invitedPlayers.indexOf(userId),1)
+                curEvent.players.push(userId)
+                curEvent.save()
+                res.redirect('event/my-events')
+                })
+                .catch(err => { next(err) })
+        })
+        .catch(err => { next(err) })
+});
 
 router.post('/reject-invte', (req, res, next) => {
     const eventId = req.body.eventId
     const userId = req.session.user._id
-    // console.log('Event ID: ', eventId)
     User.findById(userId)
         .then( curUser => {
             curUser.invitations.splice(curUser.invitations.indexOf(eventId),1)
