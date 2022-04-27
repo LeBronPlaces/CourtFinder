@@ -1,18 +1,52 @@
 <h1>My Events</h1>
 
-<p>{{events.[0].organizer.username}}</p>
-<img src="{{events.[0].organizer.image}}" alt="" width="400px">
+{{#if organizedEvents}}
+    <h2>Organized Events</h2>
+    {{#each organizedEvents}}
+        <h3>{{name}}</h3>
+        </article>
+        <p>{{description}}</p>
+        <p>Court : {{court.name}}</p>
+        <p>Organizer: {{organizer.username}}</p>
+        <div>
+            <h4>players</h4>
+                {{#each players}}
+                    <p>{{username}}</p>
+                {{/each}}
+        </div>
+    {{/each}}
+{{/if}}
 
-{{#each events}}
-    <h3>{{name}}</h3>
-    </article>
-    <p>{{description}}</p>
-    <p>Court : {{court.name}}</p>
-    <p>Organizer: {{organizer.username}}</p>
-    <div>
-        <h4>players</h4>
-            {{#each players}}
-                <p>{{username}}</p>
-            {{/each}}
-    </div>
-{{/each}}
+{{#if playedEvents}}
+    <h2>Attending Events</h2>
+    {{#each playedEvents}}
+        <h3>{{name}}</h3>
+        </article>
+        <p>{{description}}</p>
+        <p>Court : {{court.name}}</p>
+        <p>Organizer: {{organizer.username}}</p>
+        <div>
+            <h4>players</h4>
+                {{#each players}}
+                    <p>{{username}}</p>
+                {{/each}}
+        </div>
+    {{/each}}
+{{/if}}
+
+{{#if invitations}}
+    <h2>Open Invites</h2>
+    {{#each invitations}}
+        <h3>{{name}}</h3>
+        </article>
+        <p>{{description}}</p>
+        <p>Court : {{court.name}}</p>
+        <p>Organizer: {{organizer.username}}</p>
+        <div>
+            <h4>players</h4>
+                {{#each players}}
+                    <p>{{username}}</p>
+                {{/each}}
+        </div>
+    {{/each}}
+{{/if}}
