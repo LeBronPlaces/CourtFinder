@@ -1,10 +1,17 @@
+:root {
+    --orange: rgb(223, 86, 23);
+    --orange-dark: rgb(203, 83, 28);
+    --creme: rgb(248, 233, 226);
+    --creme-dark: rgb(238, 221, 215);
+}
+
 body {
     width: 100vw;
     height: 100vh;
     padding: 0;
     margin: 0;
     font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
-    color: rgb(248, 233, 226);
+    color: var(--creme);
 }
 
 .navigation {
@@ -20,7 +27,7 @@ body {
     margin: 0 40px;
     font-family: 'Pacifico', cursive;
     font-size: 30px;
-    color: rgb(248, 233, 226);
+    color: var(--creme);
     text-decoration: none;
 }
 
@@ -44,7 +51,7 @@ body {
 .main-container-row-1 h1 {
     position: relative;
     top: 30px;
-    color: rgb(223, 86, 23);
+    color: var(--orange);
     font-family: 'Pacifico', cursive;
     font-size: 50px;
 }
@@ -74,23 +81,23 @@ body {
 }
 
 .index-signup-button {
-    color: rgb(248, 233, 226);
-    background-color: rgb(223, 86, 23);
+    color: var(--creme);
+    background-color: var(--orange);
 }
 
 .index-signup-button:hover {
-    color: rgb(248, 233, 226);
-    background-color: rgb(203, 83, 28);
+    color: var(--creme);
+    background-color: var(--orange-dark);
 }
 
 .index-login-button {
-    color: rgb(223, 86, 23);
-    background-color: rgb(248, 233, 226);
+    color: var(--orange);
+    background-color: var(--creme);
 }
 
 .index-login-button:hover {
-    color: rgb(223, 86, 23);
-    background-color: rgb(238, 221, 215);
+    color: var(--orange);
+    background-color: var(--creme-dark);
 }
 
 .main-container-row-3 {
@@ -107,14 +114,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color:rgb(223, 86, 23);
+    background-color:var(--orange);
 }
 
 .main-navigation a {
     margin: 0 40px;
     font-family: 'Pacifico', cursive;
     font-size: 30px;
-    color: rgb(248, 233, 226);
+    color: var(--creme);
     text-decoration: none;
 }
 
@@ -123,14 +130,14 @@ input {
     height: 60px;
     padding: 10px;
     margin: 0 10px;
-    background-color:rgb(248, 233, 226);
+    background-color:var(--creme);
     border: none;
     border-radius: 6px;
 }
 
 input:focus {
     outline: none !important;
-    border: 2px solid rgb(223, 86, 23);
+    border: 2px solid var(--orange);
 }
 
 .signup-buttons button {
@@ -140,12 +147,12 @@ input:focus {
     border-radius: 6px;
     outline: none !important;
     border: none;
-    color: rgb(248, 233, 226);
-    background-color: rgb(223, 86, 23);
+    color: var(--creme);
+    background-color: var(--orange);
 }
 
 button:hover {
-    background-color: rgb(203, 83, 28);
+    background-color: var(--orange-dark);
 }
 
 .error-message {
@@ -158,8 +165,8 @@ button:hover {
     padding: 10px 40px;
     outline: none !important;
     border: none;
-    color: rgb(248, 233, 226);
-    background-color: rgb(223, 86, 23);
+    color: var(--creme);
+    background-color: var(--orange);
     font-size: 16px;
 }
 
@@ -205,21 +212,119 @@ button:hover {
     background-color:rgb(223, 86, 23, 0.8);
 }
 
-.map-info {
+#map-info {
     padding: 40px;
-    color: rgb(248, 233, 226);
+    color: var(--creme);
+    max-height: 70vh;
 }
 
-.map-info h2 {
+#map-info h2 {
     font-size: 22px;
     margin: 0 0 40px 0;
 }
 
-.map-info img {
+#map-info img {
     width: 30px;
     height: 30px;
 }
 
-.map-info p {
+#map-info p {
     margin: 20px 0;
 }
+
+/* Create Court View */
+
+.create-court {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+.create-court h3 {
+    padding: 0 0 12px 0;
+    font-family: 'Pacifico', cursive;
+    font-size: 24px;
+}
+
+.create-court span {
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+}
+
+.create-court-col-2 {
+    padding: 0 0 0 20px;
+}
+
+.create-court label {
+    margin: 0 12px 0 0;
+}
+
+.create-court input {
+    width: 300px;
+    height: 30px;
+    margin: 0;
+    background-color: var(--creme);
+    accent-color: var(--creme);
+    border-radius: 6px;
+}
+
+.create-court input[type=checkbox] {
+    position: relative;
+    -webkit-appearance: none;
+    transform: scale(0.7);
+    width: 30px;
+    border: 3px solid var(--orange-dark);  
+    transition: background-color 0.2s linear;
+}
+
+.create-court input[type=checkbox]:checked {
+    transform: scale(0.7);
+    background-color: var(--orange);
+    transition: background-color 0.2s linear;
+}
+
+.create-court #numBaskets {
+    width: 76px;
+}
+
+.create-court textarea {
+    resize: none;
+    outline: none !important;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--creme);
+}
+
+.create-court textarea:focus {
+    outline: none !important;
+    border: 2px solid var(--orange);
+}
+
+.create-court select {
+    background-color: var(--creme);
+}
+
+.create-court button {
+    width: 280px;
+    height: 40px;
+    margin: 20px 0 0 0;
+    border-radius: 6px;
+    color: var(--creme);
+    background-color: var(--orange);
+    outline: none !important;
+    border: none;
+}
+
+.create-court-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.create-court button:hover {
+    background-color: var(--orange-dark);
+}
+
+
+
+

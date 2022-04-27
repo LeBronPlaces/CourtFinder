@@ -34,14 +34,23 @@ function createMarkers() {
 }
 
 function addMarker(event) {
+    createMarker(event);
+    showCreateMarkerForm();
+}
+
+function createMarker(event) {
     actualMarker = event.lngLat;
-    console.log(actualMarker);
     document.getElementById('long').value = actualMarker.lng 
     document.getElementById('lat').value = actualMarker.lat
     new mapboxgl.Marker({
         color: 'blue',
     }).setLngLat(event.lngLat)
         .addTo(map)
+}
+
+function showCreateMarkerForm() {
+    document.getElementById('').innerHTML = '<p></p>'
+
 }
 
 function toggleOpeningTimes () {
