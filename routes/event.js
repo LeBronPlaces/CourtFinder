@@ -91,12 +91,13 @@ router.get('/event/my-events', (req, res, next) => {
             })
         })
         .catch(err => { next(err) })
-
 });
 
 router.post('/event/join', (req, res, next) => {
     const id = req.body.EventId
     const userId = req.session.user._id
+    console.log({id});
+    console.log({userId});
     Event.findById(id)
         .then(eventFromDb => {
             eventFromDb.players.push(userId)
@@ -104,6 +105,8 @@ router.post('/event/join', (req, res, next) => {
             User.findById(userId)
                 .then( userFromDb => {
                     userFromDb.playedEvents.push(id)
+                    const pos = userFromDb.invitations.indexOf(id)
+                    if (pos !== -1) userFromDb.invitations.splice(pos, 1)
                     userFromDb.save()
                     res.redirect('/event/all')
                 })
