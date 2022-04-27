@@ -1,13 +1,36 @@
-<h1>Sign up</h1>
-<form action="/login" method="POST">
-	<label for="username">Username: </label>
-	<input type="text" name="username">
+<div class="main-navigation">
+    <a href="/">Court Finder</a>
+</div>
 
-	<label for="password">Password: </label>
-	<input type="password" name="password">
-        
-	<button type="submit">Log in</button>
-	{{#if message}}
-		<p>{{message}}</p>
-	{{/if}}
-</form>
+<div class="main-container">
+
+    <div class="main-container-row-1">
+    </div>
+
+    <div class="main-container-row-2">
+		<div class="signup-buttons">
+
+			<form action="/login" method="POST">
+				<input type="text" name="username" placeholder="Username">
+				<input type="password" name="password" placeholder="Password">
+					
+				<button type="submit">Log in</button>
+
+			</form>
+
+		</div>
+
+		{{#if message}}
+			<div class="error-message">
+				<p>{{message}}</p>
+			</div>
+		{{/if}}
+    </div>
+
+    <div class="main-container-row-3">
+    </div>
+
+</div>
+
+
+

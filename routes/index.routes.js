@@ -26,9 +26,9 @@ router.get("/map", (req, res, next) => {
 router.get("/main", (req, res, next) => {
   console.log('PRINTING USER: ', req.session.use)
   if (req.session.user) {
-    res.render('main', {button: '<form action="/logout" method="GET"><button type="submit">Log Out</button></form>'})
+    res.render('main', {button: '<form action="/logout" method="GET"><button type="submit">Logout</button></form>'})
   } else {
-    res.render('main', {button: '<form action="/login" method="POST"><button type="submit">Log In</button></form>'})
+    res.render('main', {button: '<form action="/login" method="POST"><button type="submit">Login</button></form>'})
   }
   
 });

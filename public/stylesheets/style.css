@@ -1,12 +1,225 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: rgb(248, 233, 226);
 }
 
-a {
-  color: #00b7ff;
+.navigation {
+    position: absolute;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-h1 {
-  color: 15px;
+.navigation a {
+    margin: 0 40px;
+    font-family: 'Pacifico', cursive;
+    font-size: 30px;
+    color: rgb(248, 233, 226);
+    text-decoration: none;
+}
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('/images/nick-jio-57rD2oDZquc-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.main-container-row-1 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.main-container-row-1 h1 {
+    position: relative;
+    top: 30px;
+    color: rgb(223, 86, 23);
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+}
+
+.main-container-row-2 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-container-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.index-container-buttons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 60px;
+    margin: 0 20px;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.index-signup-button {
+    color: rgb(248, 233, 226);
+    background-color: rgb(223, 86, 23);
+}
+
+.index-signup-button:hover {
+    color: rgb(248, 233, 226);
+    background-color: rgb(203, 83, 28);
+}
+
+.index-login-button {
+    color: rgb(223, 86, 23);
+    background-color: rgb(248, 233, 226);
+}
+
+.index-login-button:hover {
+    color: rgb(223, 86, 23);
+    background-color: rgb(238, 221, 215);
+}
+
+.main-container-row-3 {
+    flex: 1;
+}
+
+
+/* Sign Up / Login View */
+
+.main-navigation {
+    position: absolute;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:rgb(223, 86, 23);
+}
+
+.main-navigation a {
+    margin: 0 40px;
+    font-family: 'Pacifico', cursive;
+    font-size: 30px;
+    color: rgb(248, 233, 226);
+    text-decoration: none;
+}
+
+input {
+    width: 240px;
+    height: 60px;
+    padding: 10px;
+    margin: 0 10px;
+    background-color:rgb(248, 233, 226);
+    border: none;
+    border-radius: 6px;
+}
+
+input:focus {
+    outline: none !important;
+    border: 2px solid rgb(223, 86, 23);
+}
+
+.signup-buttons button {
+    width: 300px;
+    height: 60px;
+    margin: 0 10px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: rgb(248, 233, 226);
+    background-color: rgb(223, 86, 23);
+}
+
+button:hover {
+    background-color: rgb(203, 83, 28);
+}
+
+.error-message {
+    margin: 20px 0;
+}
+
+/* Main View */
+
+.main-navigation button {
+    padding: 10px 40px;
+    outline: none !important;
+    border: none;
+    color: rgb(248, 233, 226);
+    background-color: rgb(223, 86, 23);
+    font-size: 16px;
+}
+
+.map-container {
+    width: 100vw;
+    height: 100vh;
+    padding: 60px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('/images/nick-jio-57rD2oDZquc-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.map-container-row-1 {
+    flex: 1;
+}
+
+.map-container-row-2 {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100vw;
+}
+
+.map-container-row-3 {
+    flex: 1;
+}
+
+.map-container-col-1 {
+    flex: 3;
+    height: 500px;
+    margin: 40px 20px 40px 80px;
+    border-radius: 20px;
+}
+
+.map-container-col-2 {
+    flex: 2;
+    margin: 40px 80px 40px 20px;
+    border-radius: 20px;
+    background-color:rgb(223, 86, 23, 0.8);
+}
+
+.map-info {
+    padding: 40px;
+    color: rgb(248, 233, 226);
+}
+
+.map-info h2 {
+    font-size: 22px;
+    margin: 0 0 40px 0;
+}
+
+.map-info img {
+    width: 30px;
+    height: 30px;
+}
+
+.map-info p {
+    margin: 20px 0;
 }
