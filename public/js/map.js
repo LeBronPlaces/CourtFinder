@@ -35,7 +35,6 @@ function createMarkers() {
 }
 
 function addMarker(event) {
-<<<<<<< HEAD
     createMarker(event);
     showCreateMarkerForm();
 }
@@ -43,7 +42,6 @@ function addMarker(event) {
 function createMarker(event) {
     actualMarker = event.lngLat;
     document.getElementById('long').value = actualMarker.lng 
-=======
     if (lastMarker !== null) {
         lastMarker.remove();
     }
@@ -52,7 +50,6 @@ function createMarker(event) {
     //console.log('length: ', actualMarker.length);
     //console.log('mapbox: ', mapboxgl);
     document.getElementById('long').value = actualMarker.lng
->>>>>>> ab275e8762ab7d9f797720ec4f1b41a92ac268c4
     document.getElementById('lat').value = actualMarker.lat
     lastMarker = new mapboxgl.Marker({
         color: "blue",
@@ -62,16 +59,14 @@ function createMarker(event) {
     //console.log("lastMarker: ", lastMarker);
 }
 
-<<<<<<< HEAD
+
 function showCreateMarkerForm() {
     document.getElementById('').innerHTML = '<p></p>'
 
 }
 
-function toggleOpeningTimes () {
-=======
 function toggleOpeningTimes() {
->>>>>>> ab275e8762ab7d9f797720ec4f1b41a92ac268c4
+
     let opening = document.getElementById('opening');
     let closing = document.getElementById('closing')
     if (document.getElementById('fulltime').checked) {
