@@ -48,6 +48,9 @@ function showCourtDetails(marker, e) {
     .then(response => {
         let court = response.data.court;
         showViewInMapInfo(createCourtDetailView(court));
+        document.getElementById('create-court-close').addEventListener('click', () => {
+        showViewInMapInfo(welcomeView);
+        })
     })
     e.stopPropagation();
 }
@@ -97,17 +100,42 @@ function toggleOpeningTimes() {
 }
 
 function createCourtDetailView(court) {
-    return `
-    <p>Court name: ${court.name}</p>
-    <p>Open fulltime: ${court.details.accessibility.fulltime}</p>
+   
+    
+    if (`${court.details.accessibility.fulltime}` == "true") {
+        return `
+    <div class="court-details-container">
+    <div class="court-details-container-row-1">
+        <p style="font-family:'Pacifico'; font-size: 30px">${court.name}</p>
+        <p id="create-court-close">CLOSE</p>
+    </div>
+    <p>Open 24/7 ✅</p>
+    <p>Court type: ${court.details.surface}</p>
+    <p>Number of baskets: ${court.details.numBaskets}</p>
+    <p>Type of basket: ${court.details.basketType}</p>
+    <p>Lighting ${court.details.lighting?'✅':'❌'}</p>
+    <p>Description: ${court.description}</p>
+    <img src=${court.image}>
+</div>
+    `;
+
+    } else {
+
+       return `
+    <div>
+    <p style="font-family:'Pacifico'; font-size: 30px">${court.name}</p>
     <p>Opening hour: ${court.details.accessibility.opening}</p>
     <p>Closing hour: ${court.details.accessibility.closing}</p>
     <p>Court type: ${court.details.surface}</p>
     <p>Number of baskets: ${court.details.numBaskets}</p>
-    <p>Lighting: ${court.details.lighting}</p>
+    <p>Type of basket: ${court.details.basketType}</p>
+    <p>Lighting ${court.details.lighting?'✅':'❌'}</p>
     <p>Description: ${court.description}</p>
     <img src=${court.image}>
+    <p id="create-court-close">CLOSE</p>
+    </div>
     `;
+}
 }
 
 

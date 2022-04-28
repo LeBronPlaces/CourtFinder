@@ -505,3 +505,15 @@ button:hover {
     display: flex;
     justify-content: space-between;
 }
+
+/* Court Details View */
+
+.court-details-container {
+    font-size: 16px;
+
+}
+
+.court-details-container-row-1 {
+    display: flex;
+    justify-content: space-between;
+}

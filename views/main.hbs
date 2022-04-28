@@ -28,3 +28,19 @@
 
 <script src="/js/constants.js"></script>
 <script src="/js/map.js"></script>
+
+
+
+<div class="court-details-container">
+    <div class="court-details-container-row-1">
+        <p style="font-family:'Pacifico'; font-size: 30px">${court.name}</p>
+        <p id="create-court-close">CLOSE</p>
+    </div>
+    <p>Open 24/7 ✅</p>
+    <p>Court type: ${court.details.surface}</p>
+    <p>Number of baskets: ${court.details.numBaskets}</p>
+    <p>Type of basket: ${court.details.basketType}</p>
+    <p>Lighting ${court.details.lighting?'✅':'❌'}</p>
+    <p>Description: ${court.description}</p>
+    <img src=${court.image}>
+</div>
