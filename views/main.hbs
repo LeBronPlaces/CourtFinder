@@ -2,7 +2,14 @@
 
 <div class="main-navigation">
     <a href="/">Court Finder</a>
-    <div>{{{button}}}</div>
+    <div class="profile-view">
+        {{{button}}}
+            <p id="profile-name">{{user.username}}</p>
+        {{#if user.image}}
+            <img src="{{user.image}}">
+        {{/if}}
+    </div>
+    
 </div>
 
 <div class="map-container">

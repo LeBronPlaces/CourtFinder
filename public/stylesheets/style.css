@@ -141,10 +141,6 @@ body {
     text-decoration: none;
 }
 
-.main-navigation div {
-    display: flex;
-}
-
 input[type=text] {
     width: 240px;
     height: 60px;
@@ -226,13 +222,43 @@ button:hover {
 
 /* Main View */
 
+.profile-view {
+    margin: 0 40px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-view form {
+    display: flex;
+    align-items: center;
+}
+
 .main-navigation button {
-    padding: 10px 40px;
+    margin: 0 0 0 20px;
     outline: none !important;
     border: none;
     color: var(--creme);
     background-color: var(--orange);
     font-size: 16px;
+}
+
+.main-navigation button:hover {
+    color: var(--creme-dark);
+}
+
+.profile-view p {
+    margin: 0 0 0 20px;
+    padding: 0;
+    font-size: 16px;
+    color: var(--creme-dark);
+}
+
+.profile-view img {
+    margin: 0 0 0 20px;
+    width: 46px;
+    height: 46px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .map-container {
@@ -492,9 +518,15 @@ button:hover {
 
 .event-buttons {
     display: flex;
+    align-items: center;
     margin: 0 40px;
     font-size: 30px;
     text-decoration: none;
+}
+
+.event-buttons form {
+    display: flex;
+    align-items: center;
 }
 
 .one-event {
