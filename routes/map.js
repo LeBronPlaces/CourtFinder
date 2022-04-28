@@ -74,7 +74,7 @@ router.post('/courts', isUser(), uploader.single('court-picture'), (req, res, ne
     })
     .then( createdCourt => {
        console.log('createdCourt :', createdCourt)
-       res.redirect('/map')
+       res.redirect('/main')
     })
     .catch(err => { next(err) })
 });

@@ -1,9 +1,9 @@
 const map = createMap();
 createMarkers();
-map.on('click', addMarker)
+map.on('click', addMarker);
+showViewInMapInfo(welcomeView);
 let actualMarker = null;
 let lastMarker = null
-
 
 function createMap() {
     mapboxgl.accessToken = 'pk.eyJ1IjoidGhiaCIsImEiOiJjbDJhZGVvbTgwMmQ2M2RucmliNXIwaDZ0In0.RrDkM5Omdqkq1EM_FXPxaQ';
@@ -39,23 +39,26 @@ function createMarkers() {
 }
 
 function showCourtDetails(marker, e) {
+    if (lastMarker) {
+        lastMarker.remove();
+    }
     let lat = marker._lngLat.lat;
     let long = marker._lngLat.lng;
     axios.get(`/courtByLocation/${lat}/${long}`)
     .then(response => {
-        let court = response.data.court
-        document.getElementById('map-info').innerHTML = `<p>${court.name}</p><p>${court.description}</p>`;
+        let court = response.data.court;
+        showViewInMapInfo(createCourtDetailView(court));
     })
     e.stopPropagation();
 }
 
 function addMarker(event) {
+    showViewInMapInfo(createCourtView);
+    document.getElementById('create-court-close').addEventListener('click', () => {
+        showViewInMapInfo(welcomeView);
+        lastMarker.remove();
+    })
     createMarker(event);
-    showCreateMarkerForm();
-}
-
-function showCreateMarkerForm() {
-    console.log('create marker form called')
 }
 
 function createMarker(event) {
@@ -72,9 +75,13 @@ function createMarker(event) {
         draggable: true
     }).setLngLat(event.lngLat)
         .addTo(map)
-    lastMarker.getElement().addEventListener('click', (e) => {
-        showCourtDetails(marker, e);
-    })
+        lastMarker.getElement().addEventListener('click', (e) => {
+            showCourtDetails(marker, e);
+        })
+}
+
+function showViewInMapInfo(form) {
+    document.getElementById('map-info').innerHTML = form;
 }
 
 function toggleOpeningTimes() {
@@ -88,3 +95,24 @@ function toggleOpeningTimes() {
         closing.disabled = false;
     }
 }
+
+function createCourtDetailView(court) {
+    return `
+    <p>Court name: ${court.name}</p>
+    <p>Open fulltime: ${court.details.accessibility.fulltime}</p>
+    <p>Opening hour: ${court.details.accessibility.opening}</p>
+    <p>Closing hour: ${court.details.accessibility.closing}</p>
+    <p>Court type: ${court.details.surface}</p>
+    <p>Number of baskets: ${court.details.numBaskets}</p>
+    <p>Lighting: ${court.details.lighting}</p>
+    <p>Description: ${court.description}</p>
+    <img src=${court.image}>
+    `;
+}
+
+
+
+
+
+
+
