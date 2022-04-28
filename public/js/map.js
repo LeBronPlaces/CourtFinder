@@ -39,6 +39,8 @@ function createMarkers() {
 }
 
 function showCourtDetails(marker, e) {
+    lastMarker.remove();
+
     let lat = marker._lngLat.lat;
     let long = marker._lngLat.lng;
     axios.get(`/courtByLocation/${lat}/${long}`)

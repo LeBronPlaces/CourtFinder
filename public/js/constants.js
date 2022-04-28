@@ -6,7 +6,7 @@ var welcomeView =
     <p>To view details for a court, select the court.</p>
 </div>`;
 
-var courtDetailView = `<p>${court.name}</p><p>${court.description}</p>`;
+var courtDetailView = `<p>test</p>`;
 
 var createCourtView =
 `<div class="create-court-container">
