@@ -81,13 +81,12 @@ router.post('/courts', isUser(), uploader.single('court-picture'), (req, res, ne
 
 router.post('/court/delete/:id', (req, res, next) => {
     const id = req.params.id
-    console.log({id});
     Court.findByIdAndDelete(id)
         .then(deletedCourt => {
             console.log(`deleted court with _id: ${deletedCourt._id}`)
             res.render('main')
         })
-    .catch(err => { next(err) })
+        .catch(err => { next(err) })
 });
 
 
