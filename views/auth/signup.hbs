@@ -12,8 +12,10 @@
 			<form action="/signup" method="POST" enctype="multipart/form-data">
 				<input type="text" name="username" placeholder="Username">
 				<input type="password" name="password" placeholder="Password">
-				<label for="profile-picture">Profile Picture</label>
-				<input type="file" name="profile-picture" />
+				
+				<input type="button" id="upload-picture-button" value="Profile Picture" onclick="document.getElementById('upload-picture').click(); this.disabled=true; this.id='upload-picture-button-disabled';"/>
+				<input id="upload-picture" type="file" name="profile-picture"/>
+				
 				<button type="submit">Sign Up</button>
 			</form>
 		</div>
