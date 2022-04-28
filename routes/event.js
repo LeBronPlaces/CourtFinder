@@ -96,25 +96,35 @@ router.get('/event/my-events', (req, res, next) => {
                 .populate('invitedPlayers')
                 .populate('court')
                 .then(organizedEvents => {
-                    console.log(organizedEvents);
+                    organizedEvents.map(event => {
+                        return event.dateString = event.date.toLocaleDateString('de-DE'), event.timeString = event.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+                    })
+                    // console.log(dateString = organizedEvents[0].dateString);
+                    // console.log(dateString = organizedEvents[0].timeString);
                     Event.find({_id: {$in: curUser.playedEvents}})
                         .populate('organizer')
                         .populate('players')
                         .populate('invitedPlayers')
                         .populate('court')
                         .then(playedEvents => {
+                            playedEvents.map(event => {
+                                return event.dateString = event.date.toLocaleDateString('de-DE'), event.timeString = event.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+                            })
                             Event.find({_id: {$in: curUser.invitations}})
                                 .populate('organizer')
                                 .populate('players')
                                 .populate('invitedPlayers')
                                 .populate('court')
-                                .then( invitations =>
+                                .then( invitations => {
+                                    invitations.map(event => {
+                                        return event.dateString = event.date.toLocaleDateString('de-DE'), event.timeString = event.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+                                    })
                                     res.render('event/my-events', {
                                         organizedEvents: organizedEvents,
                                         playedEvents: playedEvents,
                                         invitations: invitations
                                     })
-                                )
+                                })
                                 .catch(err => { next(err) })
                         })
                         .catch(err => { next(err) })
