@@ -5,7 +5,19 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 const User = require('../models/User')
 
-router.get('/signup', (req, res, next) => {
+const isNoUser = () => {
+    return (req, res, next) => {
+      // check for a logged in user
+      if (!req.session.user) {
+        // if the user is logged in they can proceed as requested
+        next()
+      } else {
+        res.redirect('main')
+      }
+    }
+  }
+
+router.get('/signup', isNoUser(), (req, res, next) => {
 	res.render('auth/signup')
 });
 
@@ -50,7 +62,7 @@ router.post('/signup', uploader.single('profile-picture'), (req, res, next) => {
         .catch(err => { next(err) })
 });
 
-router.get('/login', (req, res, next) => {
+router.get('/login', isNoUser(), (req, res, next) => {
     res.render('auth/login')
 });
 
