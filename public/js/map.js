@@ -1,10 +1,8 @@
 const map = createMap();
 createMarkers();
 map.on('click', addMarker);
-//showViewInMapInfo(welcomeView);
-// document.getElementById('create-court-close').getElement().addEventListener('click', () => {
-//     showWelcomeView();
-// })
+showViewInMapInfo(welcomeView);
+
 
 let actualMarker = null;
 let lastMarker = null
@@ -40,7 +38,11 @@ function createMarkers() {
 }
 
 function addMarker(event) {
-    showViewInMapInfo(welcomeView);
+    showViewInMapInfo(createCourtView);
+    document.getElementById('create-court-close').addEventListener('click', () => {
+        showViewInMapInfo(welcomeView);
+        lastMarker.remove();
+    })
     createMarker(event);
 }
 
