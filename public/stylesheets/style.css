@@ -31,6 +31,10 @@ body {
     text-decoration: none;
 }
 
+.navigation a:hover {
+    color: var(--creme-dark);
+}
+
 .main-container {
     width: 100vw;
     height: 100vh;
@@ -59,6 +63,7 @@ body {
 .main-container-row-2 {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -74,6 +79,10 @@ body {
     font-weight: lighter;
     margin-top: 18px;
     font-size: 18px;
+}
+
+.tertiary-cta:hover {
+    color: var(--orange);
 }
 
 .index-container-buttons a {

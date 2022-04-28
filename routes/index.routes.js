@@ -37,15 +37,15 @@ router.get("/map", (req, res, next) => {
 
 /* GET main page */
 router.get("/main", (req, res, next) => {
-  const userId = req.session.user._id
   if (req.session.user) {
+    const userId = req.session.user._id
     User.findById(userId)
       .then( curUser => {
         res.render('main', {username: curUser.username, button: '<form action="/event/my-events" method="GET"><button type="submit">View My Events</button></form><form action="/logout" method="GET"><button type="submit">Logout</button></form>'})
       })
       .catch(err => { next(err) })
   } else {
-    res.render('main', {button: '<form action="/event/overview" method="GET"><button type="submit">View Event Overview</button></form><form action="/login" method="POST"><button type="submit">Login</button></form>'})
+    res.render('main', {button: '<form action="/event/overview" method="GET"><button type="submit">All Events</button></form><form action="/login" method="POST"><button type="submit">Login</button></form>'})
   }
   
 });
