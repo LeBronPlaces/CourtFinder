@@ -125,6 +125,10 @@ body {
     text-decoration: none;
 }
 
+.main-navigation div {
+    display: flex;
+}
+
 input {
     width: 240px;
     height: 60px;
