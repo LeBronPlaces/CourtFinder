@@ -1,62 +1,113 @@
-<h1>My Events</h1>
+<div class="main-navigation">
+    <a href="/">Court Finder</a>
+    <div class="event-buttons">
+        <form action="/event/create" method="GET"><button type="submit">Create Your Event</button></form>
+        <form action="/event/all" method="GET"><button type="submit">Find A Game</button></form>
+        <form action="/logout" method="GET"><button type="submit">Logout</button></form>
+    </div>
+</div>
 
-{{#if organizedEvents}}
-    <h2>Organized Events</h2>
-    {{#each organizedEvents}}
-        <h3>{{name}}</h3>
-        </article>
-        <p>{{description}}</p>
-        <p>Court : {{court.name}}</p>
-        <p>Organizer: {{organizer.username}}</p>
-        <div>
-            <h4>players</h4>
-                {{#each players}}
-                    <p>{{username}}</p>
-                {{/each}}
-        </div>
-    {{/each}}
-{{/if}}
+<div class="distance-block"></div>
 
-{{#if playedEvents}}
-    <h2>Attending Events</h2>
-    {{#each playedEvents}}
-        <h3>{{name}}</h3>
-        </article>
-        <p>{{description}}</p>
-        <p>Court : {{court.name}}</p>
-        <p>Organizer: {{organizer.username}}</p>
-        <div>
-            <h4>players</h4>
-                {{#each players}}
-                    <p>{{username}}</p>
-                {{/each}}
-        </div>
-    {{/each}}
-{{/if}}
+<div class="events-container">
+<div class="events-cluster">
 
-{{#if invitations}}
-    <h2>Open Invites</h2>
-    {{#each invitations}}
-        <h3>{{name}}</h3>
-        </article>
-        <p>{{description}}</p>
-        <p>Court : {{court.name}}</p>
-        <p>Organizer: {{organizer.username}}</p>
-        <div>
-            <h4>players</h4>
-                {{#each players}}
-                    <p>{{username}}</p>
-                {{/each}}
-        </div>
+    {{#if organizedEvents}}
+    <div class="events-cluster">
+        <h2>I'm organizing!</h2>
+            {{#each organizedEvents}}
+            <div class="one-event">
+                <h3>{{name}}</h3>
+                <p>{{description}}</p>
+                <div class="court-oranizer">
+                    <p><strong>Court:</strong><br>{{court.name}}</p>
+                    <p><strong>Organizer:</strong><br>{{organizer.username}}</p>
+                </div>
+                <div class="court-oranizer">
+                    {{!-- <p><strong>Time:</strong><br>{{date}}</p> --}}
+                    <div>
+                    <p><strong>Players</strong></p>
+                    <ul>
+                        {{#each players}}
+                            <li>{{username}}</li>
+                        {{/each}}
+                    </ul>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+    </div>
+    {{/if}}
 
-        <form action="/accept-invte" method="POST">
-            <input type="hidden" value="{{_id}}" name="eventId">
-            <button type="submit">ACCEPT INVITE</button>
-        </form>
-        <form action="/reject-invte" method="POST">
-            <input type="hidden" value="{{_id}}" name="eventId">
-            <button type="submit">REJECT INVITE</button>
-        </form>
+    {{#if playedEvents}}
+    <div class="events-cluster">
+        <h2>I will join 🏀</h2>
+            {{#each playedEvents}}
+            <div class="one-event">
+                <h3>{{name}}</h3>
+                <p>{{description}}</p>
+                <div class="court-oranizer">
+                    <p><strong>Court:</strong><br>{{court.name}}</p>
+                    <p><strong>Organizer:</strong><br>{{organizer.username}}</p>
+                </div>
+                <div class="court-oranizer">
+                    {{!-- <p><strong>Time:</strong><br>{{date}}</p> --}}
+                    <div>
+                    <p><strong>Players</strong></p>
+                    <ul>
+                        {{#each players}}
+                            <li>{{username}}</li>
+                        {{/each}}
+                    </ul>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+    </div>
+    {{/if}}
 
-    {{/each}}
-{{/if}}
+    {{#if invitations}}
+    <div class="events-cluster">
+        <h2>Someone is waiting for my answer 😚</h2>
+            {{#each invitations}}
+            <div class="one-event">
+                <h3>{{name}}</h3>
+                <p>{{description}}</p>
+                    <div class="invite-answer">
+                        <form action="/accept-invte" method="POST">
+                            <input type="hidden" value="{{_id}}" name="eventId">
+                            <button type="submit">ACCEPT INVITE</button>
+                        </form>
+                        <form action="/reject-invte" method="POST">
+                            <input type="hidden" value="{{_id}}" name="eventId">
+                            <button type="submit">REJECT INVITE</button>
+                        </form>
+                    </div>
+                <div class="court-oranizer">
+                    <p><strong>Court:</strong><br>{{court.name}}</p>
+                    <p><strong>Organizer:</strong><br>{{organizer.username}}</p>
+                </div>
+                <div class="court-oranizer">
+                    {{!-- <p><strong>Time:</strong><br>{{date}}</p> --}}
+                    <div>
+                    <p><strong>Players</strong></p>
+                    <ul>
+                        {{#each players}}
+                            <li>{{username}}</li>
+                        {{/each}}
+                    </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+            {{/each}}
+    </div>
+    {{/if}}
+
+</div>
+</div>
+
+
+

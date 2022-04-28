@@ -325,6 +325,122 @@ button:hover {
     background-color: var(--orange-dark);
 }
 
+.distance-block {
+    height: 60px;
+}
 
+.events-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('/images/nick-jio-57rD2oDZquc-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
 
+.events-cluster {
+    border: 1px solid white;
+    width: 90vw;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
+.events-cluster h2 {
+    width: 26vw;
+    margin: 1vw;
+    top: 30px;
+    color: var(--orange);
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+}
+
+.event-buttons {
+    display: flex;
+    margin: 0 40px;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.one-event {
+    background-color:rgb(223, 86, 23, 0.8);
+    width: 26vw;
+    height: 250px;
+    margin: 1vw;
+    padding: 10px;
+    border-radius: 20px;
+    overflow: scroll;
+}
+
+.one-event-all {
+    background-color:rgb(223, 86, 23, 0.8);
+    width: 42vw;
+    height: 250px;
+    margin: 1vw;
+    padding: 10px;
+    border-radius: 20px;
+    overflow: scroll;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.one-event h3 {
+    font-family: 'Pacifico', cursive;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.one-event-all h3 {
+    font-family: 'Pacifico', cursive;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.court-oranizer {
+    display: flex;
+    justify-content: flex-start
+}
+
+.court-oranizer * {
+    margin: 10px;
+}
+
+.events-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/images/nick-jio-57rD2oDZquc-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.events-container-form-height {
+    height: 100vh;
+}
+
+.events-form {
+    width: 40vw;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    align-content: center;
+}
+
+.events-form h1 {
+    font-family: 'Pacifico', cursive;
+    color: var(--orange);
+    font-size: 50px;
+}
+
+.invite-answer {
+    display: flex;
+    justify-content: space-evenly;
+}
