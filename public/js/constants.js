@@ -117,8 +117,9 @@ var createCourtView =
                         </span>
 
                         <span>
-                            <label for="court-picture">Court picture:</label>
-	                        <input type="file" name="court-picture" title=" "/> 
+                            <label for="upload-picture">Court Picture:</label>
+                            <input type="button" id="upload-picture-button" value="Upload" onclick="document.getElementById('upload-picture').click(); this.disabled=true; this.id='upload-picture-button-disabled';"/>
+                            <input id="upload-picture" type="file" name="court-picture"/>
                         </span>
 
 
