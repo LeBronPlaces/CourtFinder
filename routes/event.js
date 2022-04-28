@@ -68,6 +68,9 @@ router.get('/event/all', isUser('Please log in to find events.'), (req, res, nex
         .populate('court')
         .then(allEvents => {
             allEvents.map(event => {
+                return event.dateString = event.date.toLocaleDateString('de-DE'), event.timeString = event.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            })
+            allEvents.map(event => {
                 const playerIds = []
                 event.players.forEach( player => {
                     playerIds.push(String(player._id))
