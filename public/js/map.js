@@ -1,6 +1,7 @@
 const map = createMap();
 createMarkers();
-map.on('click', addMarker)
+map.on('click', addMarker);
+showViewInMapInfo(welcomeView);
 let actualMarker = null;
 let lastMarker = null
 
@@ -23,10 +24,13 @@ function createMarkers() {
         .then(response => {
             let locations = response.data.locations;
             locations.forEach(coord => {
-                new mapboxgl.Marker({
+                let marker = new mapboxgl.Marker({
                     color: 'rgb(255, 123, 0)',
                 }).setLngLat(coord)
                     .addTo(map)
+                marker.getElement().addEventListener('click', (e) => {
+                    showCourtDetails(marker, e);
+                })
             })
         })
         .catch(err => {
@@ -34,21 +38,36 @@ function createMarkers() {
         })
 }
 
+function showCourtDetails(marker, e) {
+    if (lastMarker) {
+        lastMarker.remove();
+    }
+    let lat = marker._lngLat.lat;
+    let long = marker._lngLat.lng;
+    axios.get(`/courtByLocation/${lat}/${long}`)
+    .then(response => {
+        let court = response.data.court;
+        showViewInMapInfo(createCourtDetailView(court));
+    })
+    e.stopPropagation();
+}
+
 function addMarker(event) {
+    showViewInMapInfo(createCourtView);
+    document.getElementById('create-court-close').addEventListener('click', () => {
+        showViewInMapInfo(welcomeView);
+        lastMarker.remove();
+    })
     createMarker(event);
-    showCreateMarkerForm();
 }
 
 function createMarker(event) {
     actualMarker = event.lngLat;
-    document.getElementById('long').value = actualMarker.lng 
+    document.getElementById('long').value = actualMarker.lng
     if (lastMarker !== null) {
         lastMarker.remove();
     }
     actualMarker = event.lngLat;
-    //console.log('actualMarker: ', actualMarker);
-    //console.log('length: ', actualMarker.length);
-    //console.log('mapbox: ', mapboxgl);
     document.getElementById('long').value = actualMarker.lng
     document.getElementById('lat').value = actualMarker.lat
     lastMarker = new mapboxgl.Marker({
@@ -56,17 +75,16 @@ function createMarker(event) {
         draggable: true
     }).setLngLat(event.lngLat)
         .addTo(map)
-    //console.log("lastMarker: ", lastMarker);
+        lastMarker.getElement().addEventListener('click', (e) => {
+            showCourtDetails(marker, e);
+        })
 }
 
-
-function showCreateMarkerForm() {
-    document.getElementById('').innerHTML = '<p></p>'
-
+function showViewInMapInfo(form) {
+    document.getElementById('map-info').innerHTML = form;
 }
 
 function toggleOpeningTimes() {
-
     let opening = document.getElementById('opening');
     let closing = document.getElementById('closing')
     if (document.getElementById('fulltime').checked) {
@@ -77,3 +95,24 @@ function toggleOpeningTimes() {
         closing.disabled = false;
     }
 }
+
+function createCourtDetailView(court) {
+    return `
+    <p>Court name: ${court.name}</p>
+    <p>Open fulltime: ${court.details.accessibility.fulltime}</p>
+    <p>Opening hour: ${court.details.accessibility.opening}</p>
+    <p>Closing hour: ${court.details.accessibility.closing}</p>
+    <p>Court type: ${court.details.surface}</p>
+    <p>Number of baskets: ${court.details.numBaskets}</p>
+    <p>Lighting: ${court.details.lighting}</p>
+    <p>Description: ${court.description}</p>
+    <img src=${court.image}>
+    `;
+}
+
+
+
+
+
+
+

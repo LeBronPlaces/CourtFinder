@@ -129,7 +129,9 @@ body {
     display: flex;
 }
 
-input {
+
+
+input[type=text] {
     width: 240px;
     height: 60px;
     padding: 10px;
@@ -139,7 +141,22 @@ input {
     border-radius: 6px;
 }
 
-input:focus {
+input[type=password] {
+    width: 240px;
+    height: 60px;
+    padding: 10px;
+    margin: 0 10px;
+    background-color:var(--creme);
+    border: none;
+    border-radius: 6px;
+}
+
+input[type=text]:focus {
+    outline: none !important;
+    border: 2px solid var(--orange);
+}
+
+input[type=passoword]:focus {
     outline: none !important;
     border: 2px solid var(--orange);
 }
@@ -236,6 +253,23 @@ button:hover {
     margin: 20px 0;
 }
 
+.mapboxgl-marker:hover {
+    cursor: pointer;
+    fill: white;
+}
+
+/* Welcome Court View */
+
+.welcome-court-container h3 {
+    font-family: 'Pacifico', cursive;
+    font-size: 24px;
+}
+
+.welcome-court-container p {
+    font-size: 20px;
+}
+
+
 /* Create Court View */
 
 .create-court {
@@ -244,10 +278,21 @@ button:hover {
     font-size: 16px;
 }
 
+#create-court-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
+}
+
 .create-court h3 {
-    padding: 0 0 12px 0;
     font-family: 'Pacifico', cursive;
     font-size: 24px;
+}
+
+#create-court-close {
+    font-size: 13px;
+    cursor: pointer;
 }
 
 .create-court span {
@@ -264,7 +309,7 @@ button:hover {
     margin: 0 12px 0 0;
 }
 
-.create-court input {
+.create-court input[type=text] {
     width: 300px;
     height: 30px;
     margin: 0;
@@ -278,8 +323,11 @@ button:hover {
     -webkit-appearance: none;
     transform: scale(0.7);
     width: 30px;
-    border: 3px solid var(--orange-dark);  
+    height: 30px;
+    background-color: var(--creme);
     transition: background-color 0.2s linear;
+    border: 3px solid var(--orange-dark);  
+    border-radius: 6px;
 }
 
 .create-court input[type=checkbox]:checked {
@@ -307,6 +355,10 @@ button:hover {
 
 .create-court select {
     background-color: var(--creme);
+}
+
+.create-court input[type=file] {
+    color: transparent;
 }
 
 .create-court button {
