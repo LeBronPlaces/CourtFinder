@@ -107,6 +107,8 @@ function createCourtDetailView(court) {
     <p>Lighting: ${court.details.lighting}</p>
     <p>Description: ${court.description}</p>
     <img src=${court.image}>
+    <form action="/court/edit/${court._id}" method="POST"><input type="hidden" name="courtId" value="${court._id}"><button type="submit">Edit Court</button></form>
+    <form action="/court/delete/${court._id}" method="POST"><button type="submit">Delete Court</button></form>
     `;
 }
 
