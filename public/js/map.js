@@ -39,14 +39,15 @@ function createMarkers() {
 }
 
 function showCourtDetails(marker, e) {
-    lastMarker.remove();
-
+    if (lastMarker) {
+        lastMarker.remove();
+    }
     let lat = marker._lngLat.lat;
     let long = marker._lngLat.lng;
     axios.get(`/courtByLocation/${lat}/${long}`)
     .then(response => {
         let court = response.data.court;
-        showViewInMapInfo(courtDetailView);
+        showViewInMapInfo(createCourtDetailView(court));
     })
     e.stopPropagation();
 }
@@ -95,6 +96,19 @@ function toggleOpeningTimes() {
     }
 }
 
+function createCourtDetailView(court) {
+    return `
+    <p>Court name: ${court.name}</p>
+    <p>Open fulltime: ${court.details.accessibility.fulltime}</p>
+    <p>Opening hour: ${court.details.accessibility.opening}</p>
+    <p>Closing hour: ${court.details.accessibility.closing}</p>
+    <p>Court type: ${court.details.surface}</p>
+    <p>Number of baskets: ${court.details.numBaskets}</p>
+    <p>Lighting: ${court.details.lighting}</p>
+    <p>Description: ${court.description}</p>
+    <img src=${court.image}>
+    `;
+}
 
 
 
