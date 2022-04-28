@@ -1,5 +1,3 @@
-//const res = require("express/lib/response");
-
 const map = createMap();
 createMarkers();
 map.on('click', addMarker)
@@ -41,22 +39,17 @@ function createMarkers() {
 }
 
 function showCourtDetails(marker, e) {
-    console.log("hello");
     let lat = marker._lngLat.lat;
     let long = marker._lngLat.lng;
     axios.get(`/courtByLocation/${lat}/${long}`)
     .then(response => {
-        console.log(response);
         let court = response.data.court
-
         document.getElementById('map-info').innerHTML = `<p>${court.name}</p><p>${court.description}</p>`;
     })
-
     e.stopPropagation();
 }
 
 function addMarker(event) {
-    console.log('event: ', event);
     createMarker(event);
     showCreateMarkerForm();
 }
@@ -72,9 +65,6 @@ function createMarker(event) {
         lastMarker.remove();
     }
     actualMarker = event.lngLat;
-    //console.log('actualMarker: ', actualMarker);
-    //console.log('length: ', actualMarker.length);
-    //console.log('mapbox: ', mapboxgl);
     document.getElementById('long').value = actualMarker.lng
     document.getElementById('lat').value = actualMarker.lat
     lastMarker = new mapboxgl.Marker({
@@ -83,20 +73,11 @@ function createMarker(event) {
     }).setLngLat(event.lngLat)
         .addTo(map)
     lastMarker.getElement().addEventListener('click', (e) => {
-        
-        console.log(marker);
         showCourtDetails(marker, e);
     })
-
-    //console.log("lastMarker: ", lastMarker);
 }
 
-
-
-
-
 function toggleOpeningTimes() {
-
     let opening = document.getElementById('opening');
     let closing = document.getElementById('closing')
     if (document.getElementById('fulltime').checked) {
