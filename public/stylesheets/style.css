@@ -247,6 +247,11 @@ button:hover {
     margin: 20px 0;
 }
 
+.mapboxgl-marker:hover {
+    cursor: pointer;
+    fill: white;
+}
+
 /* Welcome Court View */
 
 .welcome-court-container h3 {
@@ -257,6 +262,7 @@ button:hover {
 .welcome-court-container p {
     font-size: 20px;
 }
+
 
 /* Create Court View */
 

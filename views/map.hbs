@@ -1,102 +1,106 @@
 <h1>This is the map</h1>
 <div id='map' style='width: 100vw; height: 100vh;'></div>
-    <script src="/js/map.js"></script>
+<script src="/js/map.js"></script>
 
 <form action="/courts" method="POST" enctype="multipart/form-data">
-	<label for="name">name: </label>
-	<input type="text" name="name">
+    <label for="name">name: </label>
+    <input type="text" name="name">
 
     <label for="long"> </label>
-	<input type="hidden" name="long" id="long" >
+    <input type="hidden" name="long" id="long">
 
     <label for="lat"> </label>
-	<input type="hidden" name="lat" id="lat">
+    <input type="hidden" name="lat" id="lat">
 
     <label for="fulltime">fulltime</label>
     <input checked={isFulltime} type="checkbox" id="fulltime" name="fulltime" onclick="toggleOpeningTimes()">
-    
+
     <label for="opening">opening</label>
     <select name="opening" id="opening">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12">12</option>
-    <option value="13">13</option>
-    <option value="14">14</option>
-    <option value="15">15</option>
-    <option value="16">16</option>
-    <option value="17">17</option>
-    <option value="18">18</option>
-    <option value="19">19</option>
-    <option value="20">20</option>
-    <option value="21">21</option>
-    <option value="22">22</option>
-    <option value="23">23</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
     </select>
 
     <label for="closing">closing</label>
     <select name="closing" id="closing">
 
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12">12</option>
-    <option value="13">13</option>
-    <option value="14">14</option>
-    <option value="15">15</option>
-    <option value="16">16</option>
-    <option value="17">17</option>
-    <option value="18">18</option>
-    <option value="19">19</option>
-    <option value="20">20</option>
-    <option value="21">21</option>
-    <option value="22">22</option>
-    <option value="23">23</option>
-    <option value="24">24</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
     </select>
 
     <label for="surface">court type</label>
     <select name="surface" id="surface">
-    <option value="rubber">rubber</option>
-    <option value="concrete">concrete</option>
-    <option value="other">other</option>
+        <option value="rubber">rubber</option>
+        <option value="concrete">concrete</option>
+        <option value="other">other</option>
     </select>
 
     <label for="basketType">basket type</label>
     <select name="basketType" id="basketType">
-    <option value="rope">rope</option>
-    <option value="chain">chain</option>
-    <option value="other">other</option>
+        <option value="rope">rope</option>
+        <option value="chain">chain</option>
+        <option value="other">other</option>
     </select>
 
     <label for="description">description</label>
-	<input type="text" name="description">
-   
+    <input type="text" name="description">
+
     <label for="numBaskets">number of baskets</label>
-	<input type="number" name="numBaskets" min="1" max="10">
+    <input type="number" name="numBaskets" min="1" max="10">
 
     <label for="lighting">lighting</label>
     <input checked={isLighting} type="checkbox" id="lighting" name="lighting">
 
     <label for="court-picture">court picture</label>
-	<input type="file" name="court-picture" />
-        
-	<button type="submit">Add new court</button>
+    <input type="file" name="court-picture" />
+
+    <button type="submit">Add new court</button>
+
+
+    <div>
+    </div>

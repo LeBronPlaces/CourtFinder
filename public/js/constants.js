@@ -6,6 +6,8 @@ var welcomeView =
     <p>To view details for a court, select the court.</p>
 </div>`;
 
+var courtDetailView = `<p>${court.name}</p><p>${court.description}</p>`;
+
 var createCourtView =
 `<div class="create-court-container">
                     <form class="create-court" action="/courts" method="POST" enctype="multipart/form-data">

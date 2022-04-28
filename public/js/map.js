@@ -2,8 +2,6 @@ const map = createMap();
 createMarkers();
 map.on('click', addMarker);
 showViewInMapInfo(welcomeView);
-
-
 let actualMarker = null;
 let lastMarker = null
 
@@ -30,11 +28,25 @@ function createMarkers() {
                     color: 'rgb(255, 123, 0)',
                 }).setLngLat(coord)
                     .addTo(map)
+                marker.getElement().addEventListener('click', (e) => {
+                    showCourtDetails(marker, e);
+                })
             })
         })
         .catch(err => {
             console.log(err)
         })
+}
+
+function showCourtDetails(marker, e) {
+    let lat = marker._lngLat.lat;
+    let long = marker._lngLat.lng;
+    axios.get(`/courtByLocation/${lat}/${long}`)
+    .then(response => {
+        let court = response.data.court;
+        showViewInMapInfo(courtDetailView);
+    })
+    e.stopPropagation();
 }
 
 function addMarker(event) {
@@ -48,14 +60,11 @@ function addMarker(event) {
 
 function createMarker(event) {
     actualMarker = event.lngLat;
-    document.getElementById('long').value = actualMarker.lng 
+    document.getElementById('long').value = actualMarker.lng
     if (lastMarker !== null) {
         lastMarker.remove();
     }
     actualMarker = event.lngLat;
-    //console.log('actualMarker: ', actualMarker);
-    //console.log('length: ', actualMarker.length);
-    //console.log('mapbox: ', mapboxgl);
     document.getElementById('long').value = actualMarker.lng
     document.getElementById('lat').value = actualMarker.lat
     lastMarker = new mapboxgl.Marker({
@@ -63,7 +72,9 @@ function createMarker(event) {
         draggable: true
     }).setLngLat(event.lngLat)
         .addTo(map)
-    //console.log("lastMarker: ", lastMarker);
+        lastMarker.getElement().addEventListener('click', (e) => {
+            showCourtDetails(marker, e);
+        })
 }
 
 function showViewInMapInfo(form) {
@@ -71,7 +82,6 @@ function showViewInMapInfo(form) {
 }
 
 function toggleOpeningTimes() {
-
     let opening = document.getElementById('opening');
     let closing = document.getElementById('closing')
     if (document.getElementById('fulltime').checked) {
