@@ -125,6 +125,12 @@ body {
     text-decoration: none;
 }
 
+.main-navigation div {
+    display: flex;
+}
+
+
+
 input[type=text] {
     width: 240px;
     height: 60px;
@@ -493,4 +499,9 @@ button:hover {
 .invite-answer {
     display: flex;
     justify-content: space-evenly;
+}
+
+.event-bootom {
+    display: flex;
+    justify-content: space-between;
 }

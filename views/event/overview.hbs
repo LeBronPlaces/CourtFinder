@@ -13,30 +13,16 @@
 <div class="events-cluster">
 
     {{#each events}}
-        <div class="one-event-all">
+        <div class="one-event">
             <div>
                 <h3>{{name}}</h3>
                 <p>{{description}}</p>
                 <p>Court : {{court.name}}</p>
-                <p>Organizer: {{organizer.username}}</p>
-                <div class="event-bootom">
-                    <div>
-                        <p><strong>Time: </strong></p>
-                        <p>{{dateString}}</p>
-                        <p>{{timeString}}</p>  
-                    </div>
-                    <div>
-                        <p><strong>Players: </strong></p>
-                            {{#each players}}
-                                <p>{{username}}</p>
-                            {{/each}}
-                    </div>
+                <div>
+                    <p><strong>Time: </strong></p>
+                    <p>{{dateString}}</p>
+                    <p>{{timeString}}</p>  
                 </div>
-            </div>
-            <div>
-                <form action="/event/join" method="POST">
-                    {{{button}}}
-                </form>
             </div>
         </div>
     {{/each}}
