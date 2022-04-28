@@ -69,6 +69,14 @@ body {
     justify-content: center;
 }
 
+.tertiary-cta {
+    text-decoration: none;
+    color: var(--creme);
+    font-weight: lighter;
+    margin-top: 18px;
+    font-size: 18px;
+}
+
 .index-container-buttons a {
     display: flex;
     justify-content: center;
