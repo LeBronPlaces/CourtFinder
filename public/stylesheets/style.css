@@ -448,3 +448,8 @@ button:hover {
     display: flex;
     justify-content: space-evenly;
 }
+
+.event-bootom {
+    display: flex;
+    justify-content: space-between;
+}

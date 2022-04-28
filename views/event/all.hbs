@@ -19,16 +19,18 @@
                 <p>{{description}}</p>
                 <p>Court : {{court.name}}</p>
                 <p>Organizer: {{organizer.username}}</p>
-                <div>
-                    <p><strong>Time: </strong></p>
-                    <p>{{dateString}}</p>
-                    <p>{{timeString}}</p>  
-                </div>
-                <div>
-                    <h4>players</h4>
-                        {{#each players}}
-                            <p>{{username}}</p>
-                        {{/each}}
+                <div class="event-bootom">
+                    <div>
+                        <p><strong>Time: </strong></p>
+                        <p>{{dateString}}</p>
+                        <p>{{timeString}}</p>  
+                    </div>
+                    <div>
+                        <p><strong>Players: </strong></p>
+                            {{#each players}}
+                                <p>{{username}}</p>
+                            {{/each}}
+                    </div>
                 </div>
             </div>
             <div>
