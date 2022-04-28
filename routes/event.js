@@ -89,6 +89,9 @@ router.get('/event/overview', (req, res, next) => {
         .populate('players')
         .populate('court')
         .then(allEvents => {
+            allEvents.map(event => {
+                return event.dateString = event.date.toLocaleDateString('de-DE'), event.timeString = event.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            })
             res.render('event/overview', {events: allEvents})
         })
         .catch(err => { next(err) })
