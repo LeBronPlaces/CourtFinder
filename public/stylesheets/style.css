@@ -401,9 +401,37 @@ button:hover {
     background-color: var(--creme);
 }
 
-.create-court input[type=file] {
-    color: transparent;
+.create-court #upload-picture {
+    display: none;
 }
+
+.create-court #upload-picture-button {
+    width: 200px;
+    height: 30px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: var(--creme);
+    background-color: var(--orange);
+}
+
+.create-court #upload-picture-button-disabled {
+    width: 200px;
+    height: 30px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: var(--creme-dark);
+    background-color: var(--orange-dark);
+}
+
+.create-court #upload-picture-button:hover {
+    background-color: var(--orange-dark);
+}
+
+
+
+
 
 .create-court button {
     width: 280px;
@@ -424,6 +452,8 @@ button:hover {
 .create-court button:hover {
     background-color: var(--orange-dark);
 }
+
+/* Events View */
 
 .distance-block {
     height: 60px;
