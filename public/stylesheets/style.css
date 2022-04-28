@@ -232,6 +232,12 @@ button:hover {
     margin: 20px 0;
 }
 
+.mapboxgl-marker:hover {
+    cursor: pointer;
+    fill: white;
+}
+
+
 /* Create Court View */
 
 .create-court {

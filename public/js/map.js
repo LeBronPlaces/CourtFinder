@@ -4,6 +4,7 @@ map.on('click', addMarker)
 let actualMarker = null;
 let lastMarker = null
 
+
 function createMap() {
     mapboxgl.accessToken = 'pk.eyJ1IjoidGhiaCIsImEiOiJjbDJhZGVvbTgwMmQ2M2RucmliNXIwaDZ0In0.RrDkM5Omdqkq1EM_FXPxaQ';
     const map = new mapboxgl.Map({
@@ -23,10 +24,13 @@ function createMarkers() {
         .then(response => {
             let locations = response.data.locations;
             locations.forEach(coord => {
-                new mapboxgl.Marker({
+                let marker = new mapboxgl.Marker({
                     color: 'rgb(255, 123, 0)',
                 }).setLngLat(coord)
                     .addTo(map)
+                marker.getElement().addEventListener('click', (e) => {
+                    showCourtDetails(marker, e);
+                })
             })
         })
         .catch(err => {
@@ -34,21 +38,33 @@ function createMarkers() {
         })
 }
 
+function showCourtDetails(marker, e) {
+    let lat = marker._lngLat.lat;
+    let long = marker._lngLat.lng;
+    axios.get(`/courtByLocation/${lat}/${long}`)
+    .then(response => {
+        let court = response.data.court
+        document.getElementById('map-info').innerHTML = `<p>${court.name}</p><p>${court.description}</p>`;
+    })
+    e.stopPropagation();
+}
+
 function addMarker(event) {
     createMarker(event);
     showCreateMarkerForm();
 }
 
+function showCreateMarkerForm() {
+    console.log('create marker form called')
+}
+
 function createMarker(event) {
     actualMarker = event.lngLat;
-    document.getElementById('long').value = actualMarker.lng 
+    document.getElementById('long').value = actualMarker.lng
     if (lastMarker !== null) {
         lastMarker.remove();
     }
     actualMarker = event.lngLat;
-    //console.log('actualMarker: ', actualMarker);
-    //console.log('length: ', actualMarker.length);
-    //console.log('mapbox: ', mapboxgl);
     document.getElementById('long').value = actualMarker.lng
     document.getElementById('lat').value = actualMarker.lat
     lastMarker = new mapboxgl.Marker({
@@ -56,17 +72,12 @@ function createMarker(event) {
         draggable: true
     }).setLngLat(event.lngLat)
         .addTo(map)
-    //console.log("lastMarker: ", lastMarker);
-}
-
-
-function showCreateMarkerForm() {
-    document.getElementById('').innerHTML = '<p></p>'
-
+    lastMarker.getElement().addEventListener('click', (e) => {
+        showCourtDetails(marker, e);
+    })
 }
 
 function toggleOpeningTimes() {
-
     let opening = document.getElementById('opening');
     let closing = document.getElementById('closing')
     if (document.getElementById('fulltime').checked) {

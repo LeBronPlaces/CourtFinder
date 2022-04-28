@@ -32,6 +32,19 @@ router.get('/courtLocations', (req, res, next) => {
         .catch(err => { next(err) })
 });
 
+router.get('/courtByLocation/:lat/:long', (req, res, next) => {
+    let { lat, long } = req.params;
+    lat = Number(lat);
+    long = Number(long);
+    
+    Court.findOne({location: {lat : lat, long: long}})
+        .then(courtByLocation => {
+            res.json({ court: courtByLocation })    
+            })
+            
+        .catch(err => { next(err) })
+});
+
 router.post('/courts', isUser(), uploader.single('court-picture'), (req, res, next) => {
     console.log(req.body);
     const {name, long, lat, fulltime, opening, closing, surface, basketType, description, image, numBaskets, lighting} = req.body
