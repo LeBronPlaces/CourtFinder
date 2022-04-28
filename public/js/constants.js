@@ -25,7 +25,7 @@ var createCourtView =
 
                         <span>
                             <label for="fulltime">Open fulltime:</label>
-                            <input checked={isFulltime} type="checkbox" id="fulltime" name="fulltime" onclick="toggleOpeningTimes()">
+                            <input type="checkbox" id="fulltime" name="fulltime" onclick="toggleOpeningTimes()">
                         </span>
                         
                         <span>
@@ -39,7 +39,7 @@ var createCourtView =
                                 <option value="5">05:00</option>
                                 <option value="6">06:00</option>
                                 <option value="7">07:00</option>
-                                <option value="8">08:00</option>
+                                <option value="8" selected>08:00</option>
                                 <option value="9">09:00</option>
                                 <option value="10">10:00</option>
                                 <option value="11">11:00</option>
@@ -81,7 +81,7 @@ var createCourtView =
                                 <option value="19">19:00</option>
                                 <option value="20">20:00</option>
                                 <option value="21">21:00</option>
-                                <option value="22">22:00</option>
+                                <option value="22" selected>22:00</option>
                                 <option value="23">23:00</option>
                                 <option value="24">24:00</option>
                             </select>
@@ -117,8 +117,9 @@ var createCourtView =
                         </span>
 
                         <span>
-                            <label for="court-picture">Court picture:</label>
-	                        <input type="file" name="court-picture" title=" "/> 
+                            <label for="upload-picture">Court Picture:</label>
+                            <input type="button" id="upload-picture-button" value="Upload" onclick="document.getElementById('upload-picture').click(); this.disabled=true; this.id='upload-picture-button-disabled';"/>
+                            <input id="upload-picture" type="file" name="court-picture"/>
                         </span>
 
 

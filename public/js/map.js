@@ -132,8 +132,12 @@ function createCourtDetailView(court) {
     <p>Lighting ${court.details.lighting?'✅':'❌'}</p>
     <p>Description: ${court.description}</p>
     <img src=${court.image}>
+<<<<<<< HEAD
     <p id="create-court-close">CLOSE</p>
     </div>
+=======
+    <form action="/court/delete/${court._id}" method="POST"><button type="submit">Delete Court</button></form>
+>>>>>>> main
     `;
 }
 }

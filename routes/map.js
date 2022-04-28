@@ -79,5 +79,15 @@ router.post('/courts', isUser(), uploader.single('court-picture'), (req, res, ne
     .catch(err => { next(err) })
 });
 
+router.post('/court/delete/:id', (req, res, next) => {
+    const id = req.params.id
+    Court.findByIdAndDelete(id)
+        .then(deletedCourt => {
+            console.log(`deleted court with _id: ${deletedCourt._id}`)
+            res.render('main')
+        })
+        .catch(err => { next(err) })
+});
+
 
 module.exports = router;

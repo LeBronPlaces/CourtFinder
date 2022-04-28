@@ -31,6 +31,10 @@ body {
     text-decoration: none;
 }
 
+.navigation a:hover {
+    color: var(--creme-dark);
+}
+
 .main-container {
     width: 100vw;
     height: 100vh;
@@ -67,6 +71,18 @@ body {
 .index-container-buttons {
     display: flex;
     justify-content: center;
+}
+
+.tertiary-cta {
+    text-decoration: none;
+    color: var(--creme);
+    font-weight: lighter;
+    margin-top: 18px;
+    font-size: 18px;
+}
+
+.tertiary-cta:hover {
+    color: var(--orange);
 }
 
 .index-container-buttons a {
@@ -129,8 +145,6 @@ body {
     display: flex;
 }
 
-
-
 input[type=text] {
     width: 240px;
     height: 60px;
@@ -156,9 +170,39 @@ input[type=text]:focus {
     border: 2px solid var(--orange);
 }
 
-input[type=passoword]:focus {
+input[type=password]:focus {
     outline: none !important;
     border: 2px solid var(--orange);
+}
+
+.main-container-row-2 #upload-picture {
+    display: none;
+}
+
+.main-container-row-2 #upload-picture-button {
+    width: 240px;
+    height: 60px;
+    margin: 0 10px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: var(--creme);
+    background-color: var(--orange);
+}
+
+.main-container-row-2 #upload-picture-button-disabled {
+    width: 240px;
+    height: 60px;
+    margin: 0 10px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: var(--creme-dark);
+    background-color: var(--orange-dark);
+}
+
+.main-container-row-2 #upload-picture-button:hover {
+    background-color: var(--orange-dark);
 }
 
 .signup-buttons button {
@@ -357,9 +401,37 @@ button:hover {
     background-color: var(--creme);
 }
 
-.create-court input[type=file] {
-    color: transparent;
+.create-court #upload-picture {
+    display: none;
 }
+
+.create-court #upload-picture-button {
+    width: 200px;
+    height: 30px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: var(--creme);
+    background-color: var(--orange);
+}
+
+.create-court #upload-picture-button-disabled {
+    width: 200px;
+    height: 30px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: var(--creme-dark);
+    background-color: var(--orange-dark);
+}
+
+.create-court #upload-picture-button:hover {
+    background-color: var(--orange-dark);
+}
+
+
+
+
 
 .create-court button {
     width: 280px;
@@ -380,6 +452,8 @@ button:hover {
 .create-court button:hover {
     background-color: var(--orange-dark);
 }
+
+/* Events View */
 
 .distance-block {
     height: 60px;
