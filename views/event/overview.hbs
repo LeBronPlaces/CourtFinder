@@ -1,0 +1,27 @@
+<div class="main-navigation">
+    <a href="/">Court Finder</a>
+    <div class="event-buttons">
+        <form action="/event/create" method="GET"><button type="submit">Create Your Event</button></form>
+        <form action="/event/my-events" method="GET"><button type="submit">See my events</button></form>
+        <form action="/logout" method="GET"><button type="submit">Logout</button></form>
+    </div>
+</div>
+
+<div class="distance-block"></div>
+
+<div class="events-container">
+<div class="events-cluster">
+
+    {{#each events}}
+        <div class="one-event-all">
+            <div>
+                <h3>{{name}}</h3>
+                <p>{{description}}</p>
+                <p>Court : {{court.name}}</p>
+            </div>
+        </div>
+    {{/each}}
+
+</div>
+</div>
+

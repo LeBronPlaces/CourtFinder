@@ -5,19 +5,19 @@ const Court = require('../models/Court')
 const Event = require('../models/Event')
 const User = require('../models/User')
 
-const isUser = () => {
+const isUser = (userMessage) => {
     return (req, res, next) => {
       // check for a logged in user
       if (req.session.user) {
         // if the user is logged in they can proceed as requested
         next()
       } else {
-        res.render('auth/login', {message: 'Please log in in order to create an event.'})
+        res.render('auth/login', {message: userMessage})
       }
     }
   }
 
-router.get('/event/create', (req, res, next) => {
+router.get('/event/create', isUser('Please log in to create an event.'), (req, res, next) => {
     Court.find()
         .then(allCourts => {
             User.find()
@@ -29,7 +29,7 @@ router.get('/event/create', (req, res, next) => {
         .catch(err => { next(err) })
 });
 
-router.post('/event/create', isUser(), (req, res, next) => {
+router.post('/event/create', isUser('Please log in to create an event.'), (req, res, next) => {
     const userId = req.session.user._id
     const {name, description, date, court, invited} = req.body
     Event.create({
@@ -60,7 +60,7 @@ router.post('/event/create', isUser(), (req, res, next) => {
     .catch(err => { next(err) })
 });
 
-router.get('/event/all', (req, res, next) => {
+router.get('/event/all', isUser('Please log in to find events.'), (req, res, next) => {
     const id = req.session.user._id
     Event.find()
         .populate('organizer')
@@ -83,7 +83,18 @@ router.get('/event/all', (req, res, next) => {
         .catch(err => { next(err) })
 });
 
-router.get('/event/my-events', (req, res, next) => {
+router.get('/event/overview', (req, res, next) => {
+    Event.find()
+        .populate('organizer')
+        .populate('players')
+        .populate('court')
+        .then(allEvents => {
+            res.render('event/overview', {events: allEvents})
+        })
+        .catch(err => { next(err) })
+});
+
+router.get('/event/my-events', isUser('Please log in to see your events.'), (req, res, next) => {
     const id = req.session.user._id
     User.findById(id)
         .populate('organizedEvents')
@@ -99,8 +110,6 @@ router.get('/event/my-events', (req, res, next) => {
                     organizedEvents.map(event => {
                         return event.dateString = event.date.toLocaleDateString('de-DE'), event.timeString = event.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
                     })
-                    // console.log(dateString = organizedEvents[0].dateString);
-                    // console.log(dateString = organizedEvents[0].timeString);
                     Event.find({_id: {$in: curUser.playedEvents}})
                         .populate('organizer')
                         .populate('players')
@@ -135,7 +144,7 @@ router.get('/event/my-events', (req, res, next) => {
 
 });
 
-router.post('/event/join', (req, res, next) => {
+router.post('/event/join', isUser('Please log in to join an event.'), (req, res, next) => {
     const id = req.body.EventId
     const userId = req.session.user._id
     console.log({id});
@@ -157,7 +166,7 @@ router.post('/event/join', (req, res, next) => {
         .catch(err => { next(err) })
 });
 
-router.post('/accept-invte', (req, res, next) => {
+router.post('/accept-invte', isUser('Please log in to accept an invitation.'), (req, res, next) => {
     const eventId = req.body.eventId
     const userId = req.session.user._id
     User.findById(userId)
@@ -177,7 +186,7 @@ router.post('/accept-invte', (req, res, next) => {
         .catch(err => { next(err) })
 });
 
-router.post('/reject-invte', (req, res, next) => {
+router.post('/reject-invte', isUser('Please log in to reject an invitation.'), (req, res, next) => {
     const eventId = req.body.eventId
     const userId = req.session.user._id
     User.findById(userId)
