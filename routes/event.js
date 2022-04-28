@@ -30,6 +30,7 @@ router.get('/event/create', (req, res, next) => {
 });
 
 router.post('/event/create', isUser(), (req, res, next) => {
+    const userId = req.session.user._id
     const {name, description, date, court, invited} = req.body
     Event.create({
         name,
@@ -47,9 +48,14 @@ router.post('/event/create', isUser(), (req, res, next) => {
                     invitedPlayer.invitations.push(createdEvent._id)
                     invitedPlayer.save()
                 })
+                User.findById(userId)
+                    .then( organizingUser => {
+                        organizingUser.organizedEvents.push(createdEvent._id)
+                        organizingUser.save()
+                        res.redirect('/event/my-events')
+                    })
             })
             .catch(err => { next(err) })
-        res.redirect('/event/all')
     })
     .catch(err => { next(err) })
 });
@@ -80,17 +86,43 @@ router.get('/event/all', (req, res, next) => {
 router.get('/event/my-events', (req, res, next) => {
     const id = req.session.user._id
     User.findById(id)
-    .populate('organizedEvents')
-    .populate('playedEvents')
-    .populate('invitations')    
+        .populate('organizedEvents')
+        .populate('playedEvents')
+        .populate('invitations')  
         .then(curUser => {
-            res.render('event/my-events', {
-                organizedEvents: curUser.organizedEvents,
-                playedEvents: curUser.playedEvents,
-                invitations: curUser.invitations
-            })
+            Event.find({_id: {$in: curUser.organizedEvents}})
+                .populate('organizer')
+                .populate('players')
+                .populate('invitedPlayers')
+                .populate('court')
+                .then(organizedEvents => {
+                    console.log(organizedEvents);
+                    Event.find({_id: {$in: curUser.playedEvents}})
+                        .populate('organizer')
+                        .populate('players')
+                        .populate('invitedPlayers')
+                        .populate('court')
+                        .then(playedEvents => {
+                            Event.find({_id: {$in: curUser.invitations}})
+                                .populate('organizer')
+                                .populate('players')
+                                .populate('invitedPlayers')
+                                .populate('court')
+                                .then( invitations =>
+                                    res.render('event/my-events', {
+                                        organizedEvents: organizedEvents,
+                                        playedEvents: playedEvents,
+                                        invitations: invitations
+                                    })
+                                )
+                                .catch(err => { next(err) })
+                        })
+                        .catch(err => { next(err) })
+                })
+                .catch(err => { next(err) })
         })
         .catch(err => { next(err) })
+
 });
 
 router.post('/event/join', (req, res, next) => {
