@@ -611,3 +611,18 @@ button:hover {
     display: flex;
     justify-content: space-between;
 }
+
+/* Theme */
+
+#toggle-theme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--creme);
+    border-radius: 50%;
+    color: var(--orange);
+    background-color: var(--creme);
+    cursor: pointer;
+}

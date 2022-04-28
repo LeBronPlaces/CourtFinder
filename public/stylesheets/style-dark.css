@@ -1,0 +1,629 @@
+:root {
+    --orange: rgb(91, 91, 91);
+    --orange-dark: rgb(63, 63, 63);
+    --orange-transparent: rgb(91, 91, 91, 0.8);
+    --creme: rgb(165, 165, 165);
+    --creme-dark: rgb(132, 132, 132);
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: var(--creme);
+}
+
+.navigation {
+    position: absolute;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation a {
+    margin: 0 40px;
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 30px;
+    color: var(--creme);
+    text-decoration: none;
+}
+
+.navigation a:hover {
+    color: var(--creme-dark);
+}
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('/images/leon-seibert-9p-un37L3ec-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.main-container-row-1 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.main-container-row-1 h1 {
+    position: relative;
+    top: 30px;
+    color: var(--orange);
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 50px;
+}
+
+.main-container-row-2 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-container-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.tertiary-cta {
+    text-decoration: none;
+    color: var(--creme);
+    font-weight: lighter;
+    margin-top: 18px;
+    font-size: 18px;
+}
+
+.tertiary-cta:hover {
+    color: var(--orange);
+}
+
+.index-container-buttons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 60px;
+    margin: 0 20px;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.index-signup-button {
+    color: var(--creme);
+    background-color: var(--orange);
+}
+
+.index-signup-button:hover {
+    color: var(--creme);
+    background-color: var(--orange-dark);
+}
+
+.index-login-button {
+    color: var(--orange);
+    background-color: var(--creme);
+}
+
+.index-login-button:hover {
+    color: var(--orange);
+    background-color: var(--creme-dark);
+}
+
+.main-container-row-3 {
+    flex: 1;
+}
+
+
+/* Sign Up / Login View */
+
+.main-navigation {
+    position: absolute;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:var(--orange);
+}
+
+.main-navigation a {
+    margin: 0 40px;
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 30px;
+    color: var(--creme);
+    text-decoration: none;
+}
+
+input[type=text] {
+    width: 240px;
+    height: 60px;
+    padding: 10px;
+    margin: 0 10px;
+    background-color:var(--creme);
+    border: none;
+    border-radius: 6px;
+}
+
+input[type=password] {
+    width: 240px;
+    height: 60px;
+    padding: 10px;
+    margin: 0 10px;
+    background-color:var(--creme);
+    border: none;
+    border-radius: 6px;
+}
+
+input[type=text]:focus {
+    outline: none !important;
+    border: 2px solid var(--orange);
+}
+
+input[type=password]:focus {
+    outline: none !important;
+    border: 2px solid var(--orange);
+}
+
+.main-container-row-2 #upload-picture {
+    display: none;
+}
+
+.main-container-row-2 #upload-picture-button {
+    width: 240px;
+    height: 60px;
+    margin: 0 10px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: var(--creme);
+    background-color: var(--orange);
+}
+
+.main-container-row-2 #upload-picture-button-disabled {
+    width: 240px;
+    height: 60px;
+    margin: 0 10px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: var(--creme-dark);
+    background-color: var(--orange-dark);
+}
+
+.main-container-row-2 #upload-picture-button:hover {
+    background-color: var(--orange-dark);
+}
+
+.signup-buttons button {
+    width: 300px;
+    height: 60px;
+    margin: 0 10px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: var(--creme);
+    background-color: var(--orange);
+}
+
+button:hover {
+    background-color: var(--orange-dark);
+}
+
+.error-message {
+    margin: 20px 0;
+}
+
+/* Main View */
+
+.profile-view {
+    margin: 0 40px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-view form {
+    display: flex;
+    align-items: center;
+}
+
+.main-navigation button {
+    margin: 0 0 0 20px;
+    outline: none !important;
+    border: none;
+    color: var(--creme);
+    background-color: var(--orange);
+    font-size: 16px;
+}
+
+.main-navigation button:hover {
+    color: var(--creme-dark);
+}
+
+.profile-view p {
+    margin: 0 0 0 20px;
+    padding: 0;
+    font-size: 16px;
+    color: var(--creme-dark);
+}
+
+.profile-view img {
+    margin: 0 0 0 20px;
+    width: 46px;
+    height: 46px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.map-container {
+    width: 100vw;
+    height: 100vh;
+    padding: 60px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('/images/leon-seibert-9p-un37L3ec-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.map-container-row-1 {
+    flex: 1;
+}
+
+.map-container-row-2 {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100vw;
+}
+
+.map-container-row-3 {
+    flex: 1;
+}
+
+.map-container-col-1 {
+    flex: 3;
+    height: 500px;
+    margin: 40px 20px 40px 80px;
+    border-radius: 20px;
+}
+
+.map-container-col-2 {
+    flex: 2;
+    margin: 40px 80px 40px 20px;
+    border-radius: 20px;
+    background-color:var(--orange-transparent);
+}
+
+#map-info {
+    padding: 40px;
+    color: var(--creme);
+    max-height: 70vh;
+}
+
+#map-info h2 {
+    font-size: 22px;
+    margin: 0 0 40px 0;
+}
+
+#map-info img {
+    width: 30px;
+    height: 30px;
+}
+
+#map-info p {
+    margin: 20px 0;
+}
+
+.mapboxgl-marker:hover {
+    cursor: pointer;
+    fill: white;
+}
+
+/* Welcome Court View */
+
+.welcome-court-container h3 {
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 24px;
+}
+
+.welcome-court-container p {
+    font-size: 20px;
+}
+
+
+/* Create Court View */
+
+.create-court {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+#create-court-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
+}
+
+.create-court h3 {
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 24px;
+}
+
+#create-court-close {
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.create-court span {
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+}
+
+.create-court-col-2 {
+    padding: 0 0 0 20px;
+}
+
+.create-court label {
+    margin: 0 12px 0 0;
+}
+
+.create-court input[type=text] {
+    width: 300px;
+    height: 30px;
+    margin: 0;
+    background-color: var(--creme);
+    accent-color: var(--creme);
+    border-radius: 6px;
+}
+
+.create-court input[type=checkbox] {
+    position: relative;
+    -webkit-appearance: none;
+    transform: scale(0.7);
+    width: 30px;
+    height: 30px;
+    background-color: var(--creme);
+    transition: background-color 0.2s linear;
+    border: 3px solid var(--orange-dark);  
+    border-radius: 6px;
+}
+
+.create-court input[type=checkbox]:checked {
+    transform: scale(0.7);
+    background-color: var(--orange);
+    transition: background-color 0.2s linear;
+}
+
+.create-court #numBaskets {
+    width: 76px;
+}
+
+.create-court textarea {
+    resize: none;
+    outline: none !important;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--creme);
+}
+
+.create-court textarea:focus {
+    outline: none !important;
+    border: 2px solid var(--orange);
+}
+
+.create-court select {
+    background-color: var(--creme);
+}
+
+.create-court #upload-picture {
+    display: none;
+}
+
+.create-court #upload-picture-button {
+    width: 200px;
+    height: 30px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: var(--creme);
+    background-color: var(--orange);
+}
+
+.create-court #upload-picture-button-disabled {
+    width: 200px;
+    height: 30px;
+    border-radius: 6px;
+    outline: none !important;
+    border: none;
+    color: var(--creme-dark);
+    background-color: var(--orange-dark);
+}
+
+.create-court #upload-picture-button:hover {
+    background-color: var(--orange-dark);
+}
+
+
+
+
+
+.create-court button {
+    width: 280px;
+    height: 40px;
+    margin: 20px 0 0 0;
+    border-radius: 6px;
+    color: var(--creme);
+    background-color: var(--orange);
+    outline: none !important;
+    border: none;
+}
+
+.create-court-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.create-court button:hover {
+    background-color: var(--orange-dark);
+}
+
+/* Events View */
+
+.distance-block {
+    height: 60px;
+}
+
+.events-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('/images/leon-seibert-9p-un37L3ec-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.events-cluster {
+    border: 1px solid white;
+    width: 90vw;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.events-cluster h2 {
+    width: 26vw;
+    margin: 1vw;
+    top: 30px;
+    color: var(--orange);
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 50px;
+}
+
+.event-buttons {
+    display: flex;
+    align-items: center;
+    margin: 0 40px;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.event-buttons form {
+    display: flex;
+    align-items: center;
+}
+
+.one-event {
+    background-color:var(--orange-transparent);
+    width: 26vw;
+    height: 250px;
+    margin: 1vw;
+    padding: 10px;
+    border-radius: 20px;
+    overflow: scroll;
+}
+
+.one-event-all {
+    background-color:var(--orange-transparent);
+    width: 42vw;
+    height: 250px;
+    margin: 1vw;
+    padding: 10px;
+    border-radius: 20px;
+    overflow: scroll;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.one-event h3 {
+    font-family: 'Sedgwick Ave Display', cursive;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.one-event-all h3 {
+    font-family: 'Sedgwick Ave Display', cursive;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.court-oranizer {
+    display: flex;
+    justify-content: flex-start
+}
+
+.court-oranizer * {
+    margin: 10px;
+}
+
+.events-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/images/leon-seibert-9p-un37L3ec-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.events-container-form-height {
+    height: 100vh;
+}
+
+.events-form {
+    width: 40vw;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    align-content: center;
+}
+
+.events-form h1 {
+    font-family: 'Sedgwick Ave Display', cursive;
+    color: var(--orange);
+    font-size: 50px;
+}
+
+.invite-answer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.event-bootom {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Theme */
+
+#toggle-theme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--creme);
+    border-radius: 50%;
+    color: var(--orange);
+    background-color: var(--creme);
+    cursor: pointer;
+}
