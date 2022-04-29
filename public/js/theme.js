@@ -1,27 +1,30 @@
-// toggleTheme();
-document.cookie = "la";
+setInitialDocumentCookie();
+setInitialStylesheet();
+setClickHandlerForToggleButton();
 
-document.getElementById('toggle-theme').addEventListener('click', (e) => {
-    console.log(document.cookie == "berlin")
+function setInitialDocumentCookie() {
+    if (! (document.cookie == "la" || document.cookie == "berlin")) {
+        document.cookie = "la";
+    }
+}
+
+function setInitialStylesheet() {
     if (document.cookie == "la") {
+        document.getElementById('stylesheet-file').innerHTML = "<link rel='stylesheet' href='/stylesheets/style.css' />";
+    } else {
+        document.getElementById('stylesheet-file').innerHTML = "<link rel='stylesheet' href='/stylesheets/style-dark.css' />";
+    }
+}
+
+function setClickHandlerForToggleButton() {
+    document.getElementById('toggle-theme').addEventListener('click', () => {
+        console.log(document.cookie);
+    if (document.cookie == "la") {
+        document.getElementById('stylesheet-file').innerHTML = "<link rel='stylesheet' href='/stylesheets/style-dark.css' />";
         document.cookie = "berlin"
     } else {
+        document.getElementById('stylesheet-file').innerHTML = "<link rel='stylesheet' href='/stylesheets/style.css' />";
         document.cookie = "la"
-    }
-    e.stopPropagation;
-    
-})
-
-// function toggleTheme() {
-//     let toggle = document.cookie;
-
-//     if (toggle)) {
-
-
-//         document.getElementById('stylesheet-file').innerHTML = "<link rel='stylesheet' href='/stylesheets/style-dark.css' />";
-//         toggleCounter = 1;
-//     } else {
-//         document.getElementById('stylesheet-file').innerHTML = "<link rel='stylesheet' href='/stylesheets/style.css' />";
-//         toggleCounter = 0;
-//     }
-// }
+        }
+    })
+}

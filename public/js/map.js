@@ -1,10 +1,10 @@
-const map = createMap();
+let map = createMap();
 createMarkers();
 map.on('click', addMarker);
 showViewInMapInfo(welcomeView);
 let actualMarker = null;
 let lastMarker = null;
-console.log('stylesheet: ', document.getElementById('stylesheet-file'));
+
 
 function createMap() {
     mapboxgl.accessToken = 'pk.eyJ1IjoidGhiaCIsImEiOiJjbDJhZGVvbTgwMmQ2M2RucmliNXIwaDZ0In0.RrDkM5Omdqkq1EM_FXPxaQ';
@@ -110,7 +110,6 @@ function createCourtDetailView(court) {
     <img src=${court.image}>
     `;
 }
-
 
 
 
