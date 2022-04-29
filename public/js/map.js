@@ -100,50 +100,78 @@ function toggleOpeningTimes() {
 }
 
 function createCourtDetailView(court) {
-   
-    
+
     if (`${court.details.accessibility.fulltime}` == "true") {
         return `
-    <div class="court-details-container">
-    <div class="court-details-container-row-1">
-        <p style="font-family:'Pacifico'; font-size: 30px">${court.name}</p>
-        <p id="create-court-close">CLOSE</p>
-    </div>
-    <p>Open 24/7 ✅</p>
-    <p>Court type: ${court.details.surface}</p>
-    <p>Number of baskets: ${court.details.numBaskets}</p>
-    <p>Type of basket: ${court.details.basketType}</p>
-    <p>Lighting ${court.details.lighting?'✅':'❌'}</p>
-    <p>Description: ${court.description}</p>
-    <img src=${court.image}>
-</div>
-    `;
+            <div class="court-details-container">
+                <div class="court-details-container-row-1">
+                    <p style="font-family:'Pacifico'; font-size: 30px">${court.name}</p>
+                    <p id="create-court-close">CLOSE</p>
+                </div>
+                <div class='court-details-details'>
+                    <div class="court-details-container-row-2">
+                        <p>Open 24/7 ✅</p>
+                    </div>
+                    <span>
+                        <p>Court: ${court.details.surface}</p>
+                        <p>Baskets: ${court.details.numBaskets}</p>
+                    </span>   
+                
+                    <span>
+                        <p>Type: ${court.details.basketType}</p>
+                        <p>Lighting: ${court.details.lighting?'yes':'no'}</p>
+                    </span>
+                    <div class="court-details-container-last-row">
+                        <p style="font-style: italic">"${court.description}"</p>
+                    </div>  
+                    <div class="court-view-pic-container">  
+                    <img class="court-view-pic" src=${court.image}>
+                    </div>
+                    <div class="delete-court-button-container">
+                        <form action="/court/delete/${court._id}" method="POST">
+                            <button type="submit">Delete Court</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        `;
 
     } else {
 
-       return `
-    <div>
-    <p style="font-family:'Pacifico'; font-size: 30px">${court.name}</p>
-    <p>Opening hour: ${court.details.accessibility.opening}</p>
-    <p>Closing hour: ${court.details.accessibility.closing}</p>
-    <p>Court type: ${court.details.surface}</p>
-    <p>Number of baskets: ${court.details.numBaskets}</p>
-    <p>Type of basket: ${court.details.basketType}</p>
-    <p>Lighting ${court.details.lighting?'✅':'❌'}</p>
-    <p>Description: ${court.description}</p>
-    <img src=${court.image}>
-<<<<<<< HEAD
-    <p id="create-court-close">CLOSE</p>
-    </div>
-=======
-    <form action="/court/delete/${court._id}" method="POST"><button type="submit">Delete Court</button></form>
->>>>>>> main
-    `;
+        return `
+            <div class="court-details-container">
+                <div class="court-details-container-row-1">
+                    <p style="font-family:'Pacifico'; font-size: 30px">${court.name}</p>
+                    <p id="create-court-close">CLOSE</p>
+                </div>
+                <div class='court-details-details'>
+                    <span>
+                        <p>Opens: ${court.details.accessibility.opening}:00</p>
+                        <p>Closes: ${court.details.accessibility.closing}:00</p>
+                    </span>
+                    <span>
+                        <p>Court: ${court.details.surface}</p>
+                        <p>Baskets: ${court.details.numBaskets}</p>
+                    </span>   
+                    <span>
+                        <p>Type: ${court.details.basketType}</p>
+                        <p>Lighting: ${court.details.lighting?'yes':'no'}</p>
+                    </span>
+                    <div class="court-details-container-last-row">
+                        <p style="font-style: italic">"${court.description}"</p>
+                    </div>
+                    <div class="court-view-pic-container">  
+                    <img class="court-view-pic" src=${court.image}>
+                    </div>
+                    <div class="delete-court-button-container">
+                        <form action="/court/delete/${court._id}" method="POST">
+                        <button type="submit">Delete Court</button></form>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
 }
-}
-
-
-
 
 
 
