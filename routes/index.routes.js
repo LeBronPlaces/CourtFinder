@@ -41,7 +41,7 @@ router.get("/main", (req, res, next) => {
     const userId = req.session.user._id
     User.findById(userId)
       .then( curUser => {
-        res.render('main', {username: curUser.username, button: '<form action="/event/my-events" method="GET"><button type="submit">View My Events</button></form><form action="/logout" method="GET"><button type="submit">Logout</button></form>'})
+        res.render('main', {user: curUser, button: '<form action="/event/my-events" method="GET"><button type="submit">My Events</button></form><form action="/logout" method="GET"><button type="submit">Logout</button></form>'})
       })
       .catch(err => { next(err) })
   } else {
