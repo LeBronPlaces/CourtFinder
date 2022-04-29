@@ -315,15 +315,6 @@ button:hover {
     margin: 0 0 40px 0;
 }
 
-#map-info img {
-    width: 30px;
-    height: 30px;
-}
-
-#map-info p {
-    margin: 20px 0;
-}
-
 .mapboxgl-marker:hover {
     cursor: pointer;
     fill: white;
@@ -626,4 +617,70 @@ button:hover {
     color: var(--orange);
     background-color: var(--creme);
     cursor: pointer;
+}
+
+/* Court Details View */
+
+.court-details-container {
+    font-size: 17px;
+}
+
+.court-details-container-row-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+}
+
+.court-details-container-row-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.court-details-container-row-2 p {
+    font-size: 14px;
+}
+
+.court-details-details span {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: -10px;
+}
+
+.delete-court-button-container button {
+    width: 100px;
+    height: 20px;
+    margin: 15px 0 0 0;
+    border-radius: 3px;
+    color: var(--creme);
+    background-color: var(--orange);
+    outline: none !important;
+    border: none;
+    font-size: 14px;
+}
+
+.delete-court-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-court-button-container button:hover {
+    background-color: var(--orange-dark);
+}
+
+.court-details-container-last-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.court-details-details img.court-view-pic {
+    width: 180px;
+    border-radius: 6px;
+}
+
+.court-view-pic-container {
+    display: flex;
+    justify-content: center;
 }
